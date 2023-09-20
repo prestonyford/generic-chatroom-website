@@ -14,7 +14,6 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 - HTML: Basic website structure
 - CSS: Styling
 - JavaScript: Functionality, buttons
-- Web services:
 - Authentication: Users are required to create an account with username and password to use the chatrooms
 - Database data: Users who just joined a chatroom will be able to see the last ~20 messages from before they joined, which are stored in the database
 - Websocket data: Chat messages
