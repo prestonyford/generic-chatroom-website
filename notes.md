@@ -36,3 +36,6 @@
   - vh
   - vmin
   - vmax
+
+# 9/27/2023
+- the action attribute of a form is where to send the form data when submitted
