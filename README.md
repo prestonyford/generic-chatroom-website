@@ -20,3 +20,13 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 
 ## Design Images
 <img src="conceptImage.jpg" width="720">
+
+## HTML Deliverable
+- Three main pages:
+  - Login/home page
+  - Room slection page
+  - Chatroom page, should be used as a template for all other chatrooms
+- Links: all pages link to each other somehow (buttons, <a> tags)
+- Login: username/password on homepage
+- Database: Previous messages are stored in the database to be displayed to users who have just joined
+- Websocket: Live chat service
