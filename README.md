@@ -30,3 +30,4 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 - Login: username/password on homepage
 - Database: Previous messages are stored in the database to be displayed to users who have just joined
 - Websocket: Live chat service
+- GIF button: 3rd party service call placeholder for finding GIFs
