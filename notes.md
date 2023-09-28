@@ -39,3 +39,22 @@
 
 # 9/27/2023
 - the action attribute of a form is where to send the form data when submitted
+
+# 9/28/2023
+- CSS
+  - Rules?
+    - None
+    - Block, inherit dimensions of parent
+    - Inline
+    - Flex, spread out children evenly in box
+    - Grid
+- meta HTML tag
+  - This tells phone browsers not to do any funky display stuff
+  - <meta name="viewport" content="width=device-width, initial-scale=1" />
+- CSS (media) Queries
+  - if the query is true, then the inside of the query is done (for example, css rules defined inside the query will be applied)
+- Aside elements can have a float css property
+- minmax
+- CSS frameworks
+  - Link the stylesheets and scripts
+  - Specify the class for each element to get the styles defined by the framework
