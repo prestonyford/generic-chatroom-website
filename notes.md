@@ -107,6 +107,14 @@ p.summary {
   font-weight: bold;
 }
 ```
+## Media Queries
+```
+@media (orientation: portrait) {
+  div {
+    transform: rotate(270deg);
+  }
+}
+```
 # 10/3/2023 In Class: CSS and Javascript
 - Try using Bootstrap in the startup
 - JavaScript is for manipulating the DOM
