@@ -108,7 +108,7 @@ p.summary {
 }
 ```
 ## Media Queries
-```
+```css
 @media (orientation: portrait) {
   div {
     transform: rotate(270deg);
