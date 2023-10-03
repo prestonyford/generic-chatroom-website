@@ -81,16 +81,29 @@ section h2 {
 | General sibling  | A list of siblings         | `p ~ div`      | Any p that has a div sibling               |
 | Adjacent sibling | A list of adjacent sibling | `p + div`      | Any p that has an adjacent div sibling     |
 
-- ID selectors start with #
-- Attribute selectors work based on html attributes:
+ID selectors start with #
+## Attribute selectors work based on html attributes:
 ```css
 p[class='summary'] {
   color: red;
 }
 ```
-- Pseudo selectors based on things like mouse interactions:
+## Pseudo selectors based on things like mouse interactions:
 ```css
 section:hover {
   border-left: solid 1em purple;
+}
+```
+## Class selectors:
+```css
+.summary {
+  font-weight: bold;
+}
+```
+You can also combine the element name and class selectors to select all paragraphs with a class of summary.
+
+```css
+p.summary {
+  font-weight: bold;
 }
 ```
