@@ -51,7 +51,7 @@
     - Flex, spread out children evenly in box
     - Grid
 - meta HTML tag
-  - This tells phone browsers not to do any funky display stuff
+  - This tells phone browsers not to do any funky display stuff, should always add it to head
   - ```<meta name="viewport" content="width=device-width, initial-scale=1" />```
 - CSS (media) Queries
   - if the query is true, then the inside of the query is done (for example, css rules defined inside the query will be applied)
@@ -107,3 +107,16 @@ p.summary {
   font-weight: bold;
 }
 ```
+# 10/3/2023 In Class: CSS and Javascript
+- Try using Bootstrap in the startup
+- JavaScript is for manipulating the DOM
+- V8 is Chrome's JIT compiler
+## Javascript
+- Pull the JS into the HTML just like with CSS
+  - <script src=''> </script> in head to link it
+  - Script tag in body containing javascript
+  - Write it where you would normally call it
+    - HTML attributes like:
+      - onclick="sayHello()"
+      - onclick="let i=1; i++; console.log(i)"
+      - Good practice to use 'use strict' 
