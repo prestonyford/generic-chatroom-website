@@ -121,10 +121,20 @@ p.summary {
 - V8 is Chrome's JIT compiler
 ## Javascript
 - Pull the JS into the HTML just like with CSS
-  - <script src=''> </script> in head to link it
-  - Script tag in body containing javascript
+  - <script src=''> </script> in head to link it, most common way
+  - Script tag in body containing javascript inside it
   - Write it where you would normally call it
     - HTML attributes like:
       - onclick="sayHello()"
       - onclick="let i=1; i++; console.log(i)"
       - Good practice to use 'use strict' 
+
+# 10/5/2023
+- Prototype kinda refers to the interface of an object, what methods are available for it
+- Keys in objects are typically of Symbol type, but they can also be string or number
+- A dictionary is an "object"
+- objects can have functions, etc. So objects refer to the key-value pair structures as well as instances of classes
+- string interpolation with backticks: \`hello: ${a}\`
+- Closures
+  - Make a closure by having a function that returns a function
+  - Context is kept. Surrounding scope
