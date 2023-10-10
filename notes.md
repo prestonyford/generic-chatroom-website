@@ -138,3 +138,8 @@ p.summary {
 - Closures
   - Make a closure by having a function that returns a function
   - Context is kept. Surrounding scope
+
+# 10/10/2023
+## Javascript: Closures, Regex, Template Literals
+- A closure is a function with its environment saved with it
+- Debouncing uses a timeout to prevent something from happening too often
