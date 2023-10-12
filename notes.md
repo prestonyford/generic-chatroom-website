@@ -143,3 +143,9 @@ p.summary {
 ## Javascript: Closures, Regex, Template Literals
 - A closure is a function with its environment saved with it
 - Debouncing uses a timeout to prevent something from happening too often
+
+# 10/12/2023
+- An array.reduce(p, c) combines all elements of an array to one variable. P is the acumulator, c is next item
+- array.some(fn) returns true if at least 1 element is true in the fn
+- objects can have functions
+- Spread separates array vs rest combines into array
