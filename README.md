@@ -1,3 +1,5 @@
+> [!NOTE]
+> This repository is for a school assignment
 # Startup Specification
 ## Elevator Pitch
 Have you ever wanted to set up a quick group chat with friends (or strangers) without needing to gather everyone's profiles, send an invite code, etc.? This website will provide several chatrooms for users to quickly join and start conversing. Simply create an account, pick a name, and join the right global chatroom and you're ready.
