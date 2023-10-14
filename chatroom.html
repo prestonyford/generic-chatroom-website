@@ -43,12 +43,45 @@
 
 
             <main class="content chatroom-window">
-                <form class="chatroom-right-window">
+
+                <div class="chatroom-right-window">
+                    <div class="overflow-scroll messages-window">
+                        <div class="message message-self">
+                            Example messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long text 
+                        </div>
+                        <div class="message message-self">
+                            Hello!
+                        </div>
+                        <div class="message message-other">
+                            <span class="message-author">Name</span>
+                            Welcome!
+                        </div>
+                        <div class="message-system">
+                            User has joined the room
+                        </div>
+                        <div class="message message-other">
+                            <span class="message-author">Name</span>
+                            Example messsage
+                        </div>
+                        <div class="message message-other">
+                            <span class="message-author">Name</span>
+                            Example messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long text
+                        </div>
+                        <div class="message message-other">
+                            <span class="message-author">Name</span>
+                            Example messsage
+                        </div>
+                        
+                    </div>
+
                     <div class="mb-3 user-message-input">
                         <input type="text" class="form-control user-message-input-textbox" placeholder="Enter a message...">
-                        <button type="submit" class="btn btn-primary user-message-input-button">Send</button>
+                        <button type="submit" class="btn btn-primary user-message-input-button">
+                            <span>Send</span>
+                            <img src="icons/icons8-send-30.png" width="20px">
+                        </button>
                     </div>
-                </form>
+                </div>
 
                 <div class="chatroom-left-window bg-light">
                     <div class="card" id="room-information-card">
@@ -67,13 +100,13 @@
                 </div>
             </main>
 
-            <footer>
+            <!--<footer>
                 <nav class="navbar bg-light">
                   <div class="container-fluid ">
                     <a class="text-muted" href="https://github.com/prestonyford/startup">GitHub repo</a>
                   </div>
                 </nav>
-            </footer>
+            </footer>-->
         </div>
     </body>
 </html>
