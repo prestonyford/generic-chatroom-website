@@ -42,4 +42,4 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 - Responsive design:
   - Header will shrink if width is too small, causing current user count to disappear
   - Chatroom page left side will disappear if width is too small
-  - Icon images for user counts and send button
+- Icon images for user counts and send button
