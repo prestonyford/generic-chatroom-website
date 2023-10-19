@@ -160,3 +160,15 @@ p.summary {
   - It attaches an event handler to the completion of a function, the next then() is called when that event fires
 - Async, stuff is done in chunks at a time?
   - await will create a Promise
+ 
+# 10/19/2023
+## Javascript classes
+- _name, the underscore is a convention: treat it like its private (not enforced, use # for enforced private)
+- JSON: JSON.stringify(obj) and JSON.parse(str)
+- document.querySelector('#t') will find the element with id='t'
+- addEventListener('event', fn)
+- cache
+  - localStorage.setItem('key', value);
+  - localStorage.getItem('key');
+  - Browser dev tools "Storage" tab
+  - localstorage is per-domain
