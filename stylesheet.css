@@ -2,10 +2,11 @@ p {
     margin-bottom: 0;
 }
 
-.box {
+body {
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
     height: 100vh;
+    max-height: 100%;
 }
 
 .login-window {
@@ -17,8 +18,6 @@ p {
 #room-selection-window {
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -60,15 +59,17 @@ p {
     border-top-right-radius: 0%;
 }
 
-.content {
+main {
     display: flex;
-    /* height: 100%; */
     justify-content: center;
+    flex: 1;
 }
 
 .room-selection-div {
     padding: 30px 40px;
     width: 30em;
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 #login-form {
@@ -92,7 +93,6 @@ p {
 }
 
 footer {
-    position: fixed;
     bottom: 0;
     width: 100%;
 }
@@ -102,26 +102,22 @@ footer {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 3.5fr;
-    height: 100%
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .chatroom-right-window {
-    width: 100%;
-    max-height: 100%;
-    align-self: flex-end;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-right: 10px;
+    height: 100%;
+    align-self: flex-end;
 }
 
 .user-message-input {
     align-self: end;
-    margin-bottom: 0px;
-    width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: row;
+    margin: 10px 10px;
 }
 
 .chatroom-left-window {
@@ -135,17 +131,21 @@ footer {
 }
 
 .messages-window {
-    padding: 10px;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: end;
-    overflow-y: auto;
+    align-self: flex-end;
     height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 10px;
+    min-height: 0px;
+}
+
+.chatroom-footer {
+    display: grid;
+    grid-template-columns: 1fr 3.5fr;
 }
 
 .message {
-    position: relative;
+    /* position: relative; */
     max-width: 60%;
     padding: 6px 10px;
     margin: 6px;
@@ -205,28 +205,23 @@ footer {
 
 .change-room-button {
     align-self: flex-end;
-    margin-bottom: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 10px 10px;
+}
+
+.change-room-button > p {
+    white-space: nowrap;
 }
 
 .user-message-input-button {
     margin-left: 10px;
-    margin-right: 10px;
     align-self: flex-end;
     display: flex;
 }
 
-.user-message-input-button > span {
-    margin-right: 4px;
-}
-
-.user-message-input-textbox {
-    margin-left: 10px;
-}
-
-@media (max-width: 480px) {
+@media (max-width: 560px) {
     .room-selection-div {
         width: 100%;
     }
@@ -235,5 +230,8 @@ footer {
     }
     .chatroom-left-window {
         display: none;
+    }
+    .change-room-button {
+        margin-right: 0px;
     }
 }

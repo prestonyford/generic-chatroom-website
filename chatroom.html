@@ -8,105 +8,114 @@
         <link href="stylesheet.css" rel="stylesheet">
     </head>
     <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
-        <div class="box">
-            <header class="sticky-top">
-                <nav class="navbar navbar-expand-sm navbar-light bg-light" style="padding: 0.8em;">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="index.html">
-                            <h2>Harmony</h2>
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">           
-                            <ul class="navbar-nav me-auto mb-lg-0">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="rooms.html">Rooms</a>
-                                </li>
-                                <!--<li class="nav-item">
-                                    <a class="nav-link" href="about.html">About</a>
-                                </li>-->
-                            </ul>
-                        </div>
-                    </div>
-                    <p class="current-user-count-container collapse navbar-collapse">
-                        <span>Current active users: </span><span id="current-user-count">0</span>
-                    </p>
-                </nav>
-            </header>
-
-
-            <main class="content chatroom-window">
-
-                <div class="chatroom-right-window">
-                    <div class="overflow-scroll messages-window">
-                        <div class="message message-self">
-                            Example messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long text 
-                        </div>
-                        <div class="message message-self">
-                            Hello!
-                        </div>
-                        <div class="message message-other">
-                            <span class="message-author">Name</span>
-                            Welcome!
-                        </div>
-                        <div class="message-system">
-                            User has joined the room
-                        </div>
-                        <div class="message message-other">
-                            <span class="message-author">Name</span>
-                            Example messsage
-                        </div>
-                        <div class="message message-other">
-                            <span class="message-author">Name</span>
-                            Example messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long text
-                        </div>
-                        <div class="message message-other">
-                            <span class="message-author">Name</span>
-                            Example messsage
-                        </div>
-                        
-                    </div>
-
-                    <div class="mb-3 user-message-input">
-                        <input type="text" class="form-control user-message-input-textbox" placeholder="Enter a message...">
-                        <button type="submit" class="btn btn-primary user-message-input-button">
-                            <span>Send</span>
-                            <img src="icons/icons8-send-30.png" width="20px">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="chatroom-left-window bg-light">
-                    <div class="card" id="room-information-card">
-                        <h3>Room <span class="room-name">A</span></h2>
-                        <div class="room-information-card-user-count">
-                            <p>
-                                <span><img src="icons/icons8-user-30.png" height="20px"></span>
-                                <span class="active-users-room-a">3</span>
-                                <span>/ 20</span>
-                            </p>
-                        </div>
-                    </div>
-                    <a class="btn btn-outline-danger change-room-button" href="rooms.html">
-                        <p>Leave room</p>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-light bg-light" style="padding: 0.8em;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <h2>Harmony</h2>
                     </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">           
+                        <ul class="navbar-nav me-auto mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="rooms.html">Rooms</a>
+                            </li>
+                            <!--<li class="nav-item">
+                                <a class="nav-link" href="about.html">About</a>
+                            </li>-->
+                        </ul>
+                    </div>
                 </div>
-            </main>
+                <p class="current-user-count-container collapse navbar-collapse">
+                    <span>Current active users: </span><span id="current-user-count">0</span>
+                </p>
+            </nav>
+        </header>
 
-            <!--<footer>
-                <nav class="navbar bg-light">
-                  <div class="container-fluid ">
-                    <a class="text-muted" href="https://github.com/prestonyford/startup">GitHub repo</a>
-                  </div>
-                </nav>
-            </footer>-->
-        </div>
+
+        <main class="chatroom-window">
+            <div class="chatroom-right-window">
+                <div class="messages-window">
+                    <div class="message message-self">
+                        Example messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long text 
+                    </div>
+                    <div class="message message-self">
+                        Hello!
+                    </div>
+                    <div class="message message-other">
+                        <span class="message-author">Name</span>
+                        Welcome!
+                    </div>
+                    <div class="message-system">
+                        User has joined the room
+                    </div>
+                    <div class="message message-other">
+                        <span class="message-author">Name</span>
+                        Example messsage
+                    </div>
+                    <div class="message message-other">
+                        <span class="message-author">Name</span>
+                        Example messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long textExample messsage with really long text
+                    </div>
+                    <div class="message message-other">
+                        <span class="message-author">Name</span>
+                        Example messsage
+                    </div>
+                    <div class="message message-other">
+                        <span class="message-author">Name</span>
+                        Example messsage
+                    </div>
+                    <div class="message message-other">
+                        <span class="message-author">Name</span>
+                        Example messsage
+                    </div>
+                    <div class="message message-other">
+                        <span class="message-author">Name</span>
+                        Example messsage
+                    </div>
+                    <div class="message message-other">
+                        <span class="message-author">Name</span>
+                        Example messsage
+                    </div>
+                    <div class="message message-other">
+                        <span class="message-author">Name</span>
+                        Example messsage
+                    </div>
+                </div>
+            </div>
+
+            <div class="chatroom-left-window bg-light">
+                <div class="card" id="room-information-card">
+                    <h3>Room <span class="room-name">A</span></h2>
+                    <div class="room-information-card-user-count">
+                        <p>
+                            <span><img src="icons/icons8-user-30.png" height="20px"></span>
+                            <span class="active-users-room-a">3</span>
+                            <span>/ 20</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="chatroom-footer bg-light">
+            <a class="btn btn-outline-danger change-room-button" href="rooms.html">
+                <p>Leave room</p>
+            </a>
+            <div class="user-message-input">
+                <input type="text" class="form-control user-message-input-textbox" placeholder="Enter a message...">
+                <button type="submit" class="btn btn-primary user-message-input-button">
+                    <span>Send</span>
+                    <img src="icons/icons8-send-30.png" width="20px">
+                </button>
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
 </html>
