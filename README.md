@@ -33,3 +33,13 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 - Database: Previous messages are stored in the database to be displayed to users who have just joined
 - Websocket: Live chat service
 - GIF button: 3rd party service call placeholder for finding GIFs
+
+## CSS Deliverable
+- CSS styling for:
+  - Login/home page
+  - Room selection page
+  - Chatroom page
+- Responsive design:
+  - Header will shrink if width is too small, causing current user count to disappear
+  - Chatroom page left side will disappear if width is too small
+- Icon images for user counts and send button

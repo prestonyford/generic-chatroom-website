@@ -149,3 +149,26 @@ p.summary {
 - array.some(fn) returns true if at least 1 element is true in the fn
 - objects can have functions
 - Spread separates array vs rest combines into array
+
+# 10/17/2023
+## Javascript prommises/async
+- script tag is at bottom of body because the HTML elements need to be defined first before they can be used in javascript
+- Javascript is a single-threaded language.
+- Promises
+  - Three states: Pending, success, fail
+  - .then(a, b) a is called if the previous thing was successful, otherwise calls b
+  - It attaches an event handler to the completion of a function, the next then() is called when that event fires
+- Async, stuff is done in chunks at a time?
+  - await will create a Promise
+ 
+# 10/19/2023
+## Javascript classes
+- _name, the underscore is a convention: treat it like its private (not enforced, use # for enforced private)
+- JSON: JSON.stringify(obj) and JSON.parse(str)
+- document.querySelector('#t') will find the element with id='t'
+- addEventListener('event', fn)
+- cache
+  - localStorage.setItem('key', value);
+  - localStorage.getItem('key');
+  - Browser dev tools "Storage" tab
+  - localstorage is per-domain
