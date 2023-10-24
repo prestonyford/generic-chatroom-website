@@ -7,6 +7,14 @@ body {
     flex-direction: column;
     height: 100vh;
     max-height: 100%;
+    
+}
+
+.green-header {
+    background: linear-gradient(#FFFFFF, #D1E7DD);
+}
+.green-footer {
+    background: linear-gradient(#D1E7DD, #FFFFFF);
 }
 
 .login-window {
@@ -101,16 +109,20 @@ footer {
     width: 100%;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 3.5fr;
+    grid-template-columns: 256px 1fr;
     height: 100%;
     overflow-y: hidden;
 }
 
 .chatroom-right-window {
     display: flex;
+    flex-direction: column-reverse; /* This will start the overflow at the bottom */
     max-height: 100%;
     align-self: flex-end;
-    overflow-y: scroll;
+    overflow-y: auto;
+    border: #FFFFFF;
+    border-width: 2px;
+    border-style: solid;
 }
 
 .user-message-input {
@@ -128,7 +140,7 @@ footer {
     display: grid;
     grid-auto-rows: auto;
     flex-direction: column;
-    padding: 0px 10px;
+    padding: 10px;
 }
 
 .messages-window {
@@ -139,9 +151,13 @@ footer {
     
 }
 
-.chatroom-footer {
+.chatroom-bottom-window {
     display: grid;
-    grid-template-columns: 1fr 3.5fr;
+    grid-template-rows: auto auto;
+    grid-template-columns: 256px 1fr;
+}
+.chatroom-footer {
+    grid-column: 1 / 3;
 }
 
 .message {
@@ -210,6 +226,9 @@ footer {
     justify-content: center;
     margin: 10px 10px;
 }
+.change-room-button-short-text {
+    display: none;
+}
 
 .change-room-button > p {
     white-space: nowrap;
@@ -233,5 +252,14 @@ footer {
     }
     .change-room-button {
         margin-right: 0px;
+    }
+    .change-room-button-full-text {
+        display: none;
+    }
+    .change-room-button-short-text {
+        display: inline-block;
+    }
+    .chatroom-bottom-window {
+        grid-template-columns: 72px 1fr;
     }
 }

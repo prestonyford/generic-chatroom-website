@@ -8,8 +8,8 @@
         <link href="stylesheet.css" rel="stylesheet">
     </head>
     <body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-light bg-light" style="padding: 0.8em;">
+        <header class="sticky-top border-bottom">
+            <nav class="navbar navbar-expand-sm navbar-light green-header" style="padding: 0.8em;">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="index.html">
                         <h2>Harmony</h2>
@@ -20,10 +20,10 @@
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">           
                         <ul class="navbar-nav me-auto mb-lg-0">
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="index.html">Home</a>
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a class="nav-link" href="rooms.html">Rooms</a>
                             </li>
                             <!--<li class="nav-item">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="message message-other">
                         <span class="message-author">Name</span>
-                        Example messsage
+                        I am in your walls
                     </div>
                     <div class="message message-other">
                         <span class="message-author">Name</span>
@@ -116,9 +116,10 @@
             </div>
         </main>
 
-        <footer class="chatroom-footer bg-light">
+        <footer class="chatroom-bottom-window bg-light">
             <a class="btn btn-outline-danger change-room-button" href="rooms.html">
-                <p>Leave room</p>
+                <span class="change-room-button-full-text">Leave Room</span>
+                <span class="change-room-button-short-text">Leave</span>
             </a>
             <div class="user-message-input">
                 <input type="text" class="form-control user-message-input-textbox" placeholder="Enter a message...">
@@ -126,6 +127,13 @@
                     <span>Send</span>
                     <img src="icons/icons8-send-30.png" width="20px">
                 </button>
+            </div>
+            <div class="chatroom-footer green-footer">
+                <nav class="navbar border-top">
+                    <div class="container-fluid ">
+                    <a class="text-muted" href="https://github.com/prestonyford/startup">GitHub repo</a>
+                    </div>
+                </nav>
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

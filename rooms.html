@@ -10,8 +10,8 @@
 
 
     <body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-light bg-light" style="padding: 0.8em;">
+        <header class="sticky-top border-bottom">
+            <nav class="navbar navbar-expand-sm navbar-light green-header" style="padding: 0.8em;">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="index.html">
                         <h2>Harmony</h2>
@@ -22,10 +22,10 @@
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">           
                         <ul class="navbar-nav me-auto mb-lg-0">
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="index.html">Home</a>
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a class="nav-link" href="rooms.html">Rooms</a>
                             </li>
                             <!--<li class="nav-item">
@@ -41,7 +41,7 @@
         </header>
 
 
-        <main id="room-selection-window" class="overflow-auto">
+        <main id="room-selection-window" class="overflow-auto my-green">
             <div class="card room-selection-div">
                 <h2 class="form-title">Select a room to join</h2>
                 <form id="room-selection-form"></form>
@@ -94,8 +94,8 @@
         </main>
 
 
-        <footer>
-            <nav class="navbar bg-light">
+        <footer class="green-footer">
+            <nav class="navbar border-top">
                 <div class="container-fluid ">
                 <a class="text-muted" href="https://github.com/prestonyford/startup">GitHub repo</a>
                 </div>
