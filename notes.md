@@ -172,3 +172,56 @@ p.summary {
   - localStorage.getItem('key');
   - Browser dev tools "Storage" tab
   - localstorage is per-domain
+ 
+# 10/26/2023
+## Web Services
+- Use fetch() in js to use some external service, also to give something. fetch's default method is GET, but you can use POST
+- some services need to be written by myself for my own data. In that case, write a service and make an API (endpoints) on my ec2.
+  - my own endpoints might call other external services like mongo DB for database stuff
+- Port 80 of a website/server is the default HTTP port
+- Port 443 of a website/server is the default HTTPS port
+- curl http://startup.harmony260.click/index.html will not do anything as it is http
+- curl http://startup.harmony260.click/index.html -L will follow redirects and redirect to the correct https port.
+## URL
+- https://   scheme
+- byu.edu    domain
+- :443       port
+- /api/city  path
+- ?q=pro     parameters
+- #3         anchor
+## HTTP methods
+- GET         
+- POST       make resource
+- PUT        update existing resource
+- DELETE
+- OPTIONS    get information about a resource
+## Status codes
+- 200        success
+- 301/302    redirect, 304 not modified
+- 400        bad request, 404 not found, 403 forbidden, 429 too many requests
+- 500        server error, 503 not available
+## Cookies
+- Cookies use fetch?
+- Cookies are stuff the server wants to remember, not the browser.
+- Stores server information on the client with a special session ID
+## Caching
+- For files
+- They expire
+## Using fetch for Post
+```javascript
+fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    body: JSON.stringify({
+        title: 'test title',
+        body: 'test body',
+        userId: 1,
+    }),
+    headers: {
+        'Content-type': 'application/json'
+    }
+}
+.then((response) => response.json())
+.then((jsonResponse) => {
+    console.log(jsonResponse);
+});
+```
