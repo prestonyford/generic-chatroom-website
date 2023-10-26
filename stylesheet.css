@@ -185,7 +185,6 @@ footer {
 .message-author {
     font-style: italic;
     color: rgb(80,80,80);
-    text-decoration: underline;
     font-size: smaller;
     margin-bottom: -2px;
 }
