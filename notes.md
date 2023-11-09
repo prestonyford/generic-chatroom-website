@@ -225,3 +225,12 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
     console.log(jsonResponse);
 });
 ```
+# 11/9/2023
+## Authentication, Database
+### Database
+- Store stuff in JSON other other types (images, videos)
+- MongoDB is one of many data services, it specializes in JSON objects
+  - Schme-free: No rules about what is in the objects
+  - npm install mongodb
+- put dbConfig.json in .gitignore!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- Authenticate, backend checks if correct, sends cookie back 
