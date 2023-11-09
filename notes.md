@@ -225,12 +225,3 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
     console.log(jsonResponse);
 });
 ```
-# 11/2/2023
-- http is a built in library in node.js because it is so useful
-- Express
-  - Middleware does authentication
-- npm
-  - npm init -y
-  - npm install express
-- require('express') is like #include
-- 
