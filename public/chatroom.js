@@ -4,7 +4,7 @@ db.addEventListener("new_message", (e) => {
     create_message_element(create_other_message(author, content));
 })
 
-window.onload = function() {
+window.onload = () => {
     // Subscribe to events
     const send_btn = document.getElementById("send-message-button");
     send_btn.addEventListener("click", send_message);
@@ -43,7 +43,11 @@ function create_self_message(text) {
 }
 
 function create_message_element(message) {
-    document.getElementById("messages-container").appendChild(message);
+    const container = document.getElementById("messages-container");
+    console.log(container.scrollTop);
+    console.log(container.scrollHeight);
+    const move = container.scrollTop === container.scrollHeight;
+    container.appendChild(message);
 }
 
 function send_message() {
