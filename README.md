@@ -43,3 +43,11 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
   - Header will shrink if width is too small, causing current user count to disappear
   - Chatroom page left side will disappear if width is too small
 - Icon images for user counts and send button
+
+## Javascript Deliverable
+- The login page will store username data in LocalStorage
+- The room selection page is now empty by default, and will only display the page content after it verifies that a username is in LocalStorage. Will redirect to login page if not present
+- The room selection page will display the user's username
+- The chatroom page allows the user to type messages, then press Enter or click the Send button, to 'send' a new message and display it on the DOM.
+- Placeholder for websocket for receiving messages: A message will automatically be received after the user sends a message, with a short delay
+- Placeholder for database message history
