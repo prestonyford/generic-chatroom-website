@@ -1,20 +1,50 @@
-const db = new Database()
-db.addEventListener("new_message", (e) => {
-    const {author, content} = e.detail;
-    create_message_element(create_other_message(author, content));
-})
+async function loadHistory() {
+    try {
+        const response = await fetch('/api/history?room=A');
+        data = await response.json();
+        for (const message of data.history) {
+            if (message.author === "") { // System message
+                create_message_element(create_system_message(message.content));
+            }
+            else{ // Other message
+                create_message_element(create_other_message(message.author, message.content));
+            }
+        }
+    }
+    catch {
+        alert("An error occured parsing the response.")
+    }
+}
 
 window.onload = () => {
+    loadHistory()
+
     // Subscribe to events
     const send_btn = document.getElementById("send-message-button");
-    send_btn.addEventListener("click", send_message);
+    send_btn.addEventListener("click", () => {
+        read_textbox_and_send();
+    });
 
     const text_box = document.getElementById("message-text-box");
     text_box.addEventListener("keydown", (e) => {
         if (e.key === 'Enter'){
-            send_message()
+            read_textbox_and_send();
         }
     })
+
+    // Send join message
+    send_message("", `${localStorage.getItem("username")} joined the room`);
+}
+
+function create_system_message(content) {
+    const new_message = document.createElement("div");
+    new_message.classList.add("message-system");
+
+    const content_span = document.createElement("span");
+    content_span.innerText = content;
+    new_message.appendChild(content_span)
+
+    return new_message;
 }
 
 function create_other_message(author, content) {
@@ -34,31 +64,51 @@ function create_other_message(author, content) {
     return new_message;
 }
 
-function create_self_message(text) {
+function create_self_message(content) {
     const new_message = document.createElement("div");
     new_message.classList.add("message");
     new_message.classList.add("message-self");
-    new_message.innerText = text;
+    new_message.innerText = content;
     return new_message;
 }
 
 function create_message_element(message) {
     const container = document.getElementById("messages-container");
-    console.log(container.scrollTop);
-    console.log(container.scrollHeight);
     const move = container.scrollTop === container.scrollHeight;
     container.appendChild(message);
 }
 
-function send_message() {
+function read_textbox(){
     const text_box = document.getElementById("message-text-box");
-    if (text_box.value === "") return;
-    const text_to_send = text_box.value;
+    return text_box.value;
+}
 
-    db.push_message(text_to_send);
-
-    create_message_element(create_self_message(text_to_send));
-
+function read_textbox_and_send() {
+    const content = read_textbox();
+    if (content === "") return;
+    send_message(`${localStorage.getItem("username")}`, content)
     text_box.value = "";
-    text_box.focus();
+}
+
+async function send_message(author, content) {
+    try {
+        const response = await fetch('/api/history', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({
+                room: 'A',
+                message: {
+                    author: author,
+                    content: content
+                }
+            }),
+        });
+  
+        // Store what the service gave us as the high scores
+        const message = await response.json();
+        create_message_element(create_self_message(message.content));
+    } 
+    catch {
+        alert("Error sending message")
+    }
 }
