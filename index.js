@@ -1,5 +1,10 @@
 const express = require('express');
 const app = express();
+const config = require('./config')
+
+// API
+keys = {};
+keys['tenor'] = config.TENOR_API_KEY;
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;

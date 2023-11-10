@@ -163,9 +163,7 @@ footer {
 }
 
 .gif-search-results {
-    display: grid;
-    grid-auto-rows: auto;
-    grid-auto-columns: 1fr, 1fr;
+    display: flex;
     flex-wrap: wrap;
 }
 

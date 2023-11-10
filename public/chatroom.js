@@ -22,13 +22,25 @@ window.onload = async () => {
     // Subscribe to events
     const send_btn = document.getElementById("send-message-button");
     send_btn.addEventListener("click", () => {
-        read_textbox_and_send();
+        read_message_and_send();
     });
 
-    const text_box = document.getElementById("message-text-box");
-    text_box.addEventListener("keydown", (e) => {
+    const message_text_box = document.getElementById("message-text-box");
+    message_text_box.addEventListener("keydown", (e) => {
         if (e.key === 'Enter'){
-            read_textbox_and_send();
+            read_message_and_send();
+        }
+    })
+
+    const search_btn = document.getElementById("gif-search-button");
+    search_btn.addEventListener("click", () => {
+        read_term_and_search();
+    })
+
+    const search_text_box = document.getElementById("gif-search-text-box");
+    search_text_box.addEventListener("keydown", (e) => {
+        if (e.key === 'Enter'){
+            read_term_and_search();
         }
     })
 
@@ -82,7 +94,7 @@ function read_textbox(){
     
 }
 
-function read_textbox_and_send() {
+function read_message_and_send() {
     const text_box = document.getElementById("message-text-box");
     const content = text_box.value;
     if (content === "") return;
@@ -105,7 +117,6 @@ async function send_message(type, author, content) {
             }),
         });
   
-        // Store what the service gave us as the high scores
         const message = await response.json();
 
         if (message.type === "system"){
@@ -117,5 +128,32 @@ async function send_message(type, author, content) {
     } 
     catch {
         alert("Error sending message")
+    }
+}
+
+// GIF
+
+function read_term_and_search() {
+    const text_box = document.getElementById("gif-search-text-box");
+    const content = text_box.value;
+    if (content === "") return;
+    search_gif("message", `${localStorage.getItem("username")}`, content)
+    text_box.value = "";
+}
+
+async function search_gif(search_term) {
+    try {
+        const response = await fetch('/api/gif', {
+            method: 'GET',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({
+                search_term: search_term
+            }),
+        });
+  
+        const results = await response.json();
+    }
+    catch {
+        alert("Error searching")
     }
 }
