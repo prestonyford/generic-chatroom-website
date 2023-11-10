@@ -162,7 +162,7 @@ footer {
     display: flex;
 }
 
-.gif-search-results {
+#gif-search-results {
     display: flex;
     flex-wrap: wrap;
 }

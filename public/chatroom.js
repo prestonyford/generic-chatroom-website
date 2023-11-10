@@ -11,8 +11,8 @@ async function loadHistory() {
             }
         }
     }
-    catch {
-        alert("An error occured parsing the response.")
+    catch(error) {
+        console.error(error);
     }
 }
 
@@ -126,8 +126,8 @@ async function send_message(type, author, content) {
             create_message_element(create_self_message(message.content));
         }
     } 
-    catch {
-        alert("Error sending message")
+    catch(error) {
+        console.error(error);
     }
 }
 
@@ -137,23 +137,21 @@ function read_term_and_search() {
     const text_box = document.getElementById("gif-search-text-box");
     const content = text_box.value;
     if (content === "") return;
-    search_gif("message", `${localStorage.getItem("username")}`, content)
+    search_gif(content);
     text_box.value = "";
 }
 
 async function search_gif(search_term) {
     try {
-        const response = await fetch('/api/gif', {
-            method: 'GET',
-            headers: {'content-type': 'application/json'},
-            body: JSON.stringify({
-                search_term: search_term
-            }),
-        });
-  
+        const response = await fetch(`/api/gif?search_term=${search_term}`);
         const results = await response.json();
+        display_search_results(results.results)
     }
-    catch {
-        alert("Error searching")
+    catch(error) {
+        console.error(error);
     }
+}
+
+function display_search_results(results) {
+    console.log(results);
 }

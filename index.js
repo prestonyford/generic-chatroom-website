@@ -32,6 +32,13 @@ apiRouter.post('/history', (req, res) => {
     res.status(200).send(req.body.message)
 });
 
+// Get tenor search term
+apiRouter.get('/gif', async (req, res) => {
+    const { search_term } = req.query;
+    results = await searchTenor(search_term)
+    res.send(results);
+});
+
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
@@ -188,5 +195,16 @@ function pushMessage(room, message) {
     }
     else {
 
+    }
+}
+
+async function searchTenor(search_term) {
+    try {
+        const response = await fetch(`https://tenor.googleapis.com/v2/search?q=${search_term}&key=${keys['tenor']}&limit=8`);
+        const results = await response.json();
+        return results;
+    }
+    catch {
+        console.log("Error searching")
     }
 }
