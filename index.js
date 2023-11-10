@@ -40,66 +40,82 @@ let room_data = {
     roomA: {
         history: [
             {
+                type: "message",
                 author: "Yoda",
                 content: "Allow this appointment lightly, the Council does not."
             },
             {
+                type: "message",
                 author: "Yoda",
                 content: "Disturbing is this move by Chancellor Palpatine."
             },
             {
+                type: "message",
                 author: "Mace Windu",
                 content: "You are on this Council, but we do not grant you the rank of Master."
             },
             {
+                type: "message",
                 author: "Anakin",
                 content: "What?! How can you do this?"
             },
             {
+                type: "message",
                 author: "Anakin",
                 content: "This is outrageous, it's unfair"
             },
             {
+                type: "message",
                 author: "Anakin",
                 content: "How can you be on the Council and not be a Master?"
             },
             {
+                type: "message",
                 author: "Mace Windu",
                 content: "Take a seat, young Skywalker."
             },
             {
+                type: "message",
                 author: "Anakin",
                 content: "Forgive me, Master."
             },
             {
+                type: "system",
                 author: "",
                 content: "Ki-Adi-Mundi joined the room"
             },
             {
+                type: "message",
                 author: "Ki-Adi-Mundi",
                 content: "We have surveyed all systems in the Republic, and have found no sign of General Grievous."
             },
             {
+                type: "message",
                 author: "Yoda",
                 content: "Hiding in the Outer Rim, Grievous is. The outlying systems, you must sweep."
             },
             {
+                type: "message",
                 author: "Obi-wan",
                 content: "It may take some time... we do not have many ships to spare."
             },
             {
+                type: "message",
                 author: "Macce Windu",
                 content: "We cannot take ships from the front line."
             },
             {
+                type: "message",
                 author: "Obi-wan",
                 content: "And yet, it would be fatal for us to allow the droid armies to regroup."
             },
             {
+                type: "message",
                 author: "Yoda",
                 content: "Master Kenobi, our spies contact, you must, and then wait."
             },
             {
+                type: "message",
                 author: "Ki-Adi-Mundi",
                 content: "What about the droid attack on the Wookiees?"
             },
@@ -108,6 +124,7 @@ let room_data = {
     roomB: {
         history: [
             {
+                type: "message",
                 author: "Author",
                 content: "Welcome to Room B."
             },
@@ -116,6 +133,7 @@ let room_data = {
     roomC: {
         history: [
             {
+                type: "message",
                 author: "Author",
                 content: "Welcome to Room C."
             },
@@ -124,6 +142,7 @@ let room_data = {
     roomD: {
         history: [
             {
+                type: "message",
                 author: "Author",
                 content: "Welcome to Room D."
             },

@@ -3,7 +3,7 @@ async function loadHistory() {
         const response = await fetch('/api/history?room=A');
         data = await response.json();
         for (const message of data.history) {
-            if (message.author === "") { // System message
+            if (message.type === "system") { // System message
                 create_message_element(create_system_message(message.content));
             }
             else{ // Other message
@@ -16,8 +16,8 @@ async function loadHistory() {
     }
 }
 
-window.onload = () => {
-    loadHistory()
+window.onload = async () => {
+    await loadHistory()
 
     // Subscribe to events
     const send_btn = document.getElementById("send-message-button");
@@ -33,7 +33,7 @@ window.onload = () => {
     })
 
     // Send join message
-    send_message("", `${localStorage.getItem("username")} joined the room`);
+    send_message("system", "", `${localStorage.getItem("username")} joined the room`);
 }
 
 function create_system_message(content) {
@@ -79,18 +79,18 @@ function create_message_element(message) {
 }
 
 function read_textbox(){
-    const text_box = document.getElementById("message-text-box");
-    return text_box.value;
+    
 }
 
 function read_textbox_and_send() {
-    const content = read_textbox();
+    const text_box = document.getElementById("message-text-box");
+    const content = text_box.value;
     if (content === "") return;
-    send_message(`${localStorage.getItem("username")}`, content)
+    send_message("message", `${localStorage.getItem("username")}`, content)
     text_box.value = "";
 }
 
-async function send_message(author, content) {
+async function send_message(type, author, content) {
     try {
         const response = await fetch('/api/history', {
             method: 'POST',
@@ -98,6 +98,7 @@ async function send_message(author, content) {
             body: JSON.stringify({
                 room: 'A',
                 message: {
+                    type: type,
                     author: author,
                     content: content
                 }
@@ -106,7 +107,13 @@ async function send_message(author, content) {
   
         // Store what the service gave us as the high scores
         const message = await response.json();
-        create_message_element(create_self_message(message.content));
+
+        if (message.type === "system"){
+            create_message_element(create_system_message(message.content));
+        }
+        else {
+            create_message_element(create_self_message(message.content));
+        }
     } 
     catch {
         alert("Error sending message")

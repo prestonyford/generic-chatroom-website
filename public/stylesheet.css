@@ -140,10 +140,33 @@ footer {
     /* max-height: calc(100% - 190px); */
     grid-row: 1;
     grid-column: 1;
-    display: grid;
-    grid-auto-rows: auto;
+    display: flex;
     flex-direction: column;
     padding: 10px;
+}
+
+.gif-search-div {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    margin-bottom: 10px;
+}
+
+#gif-search-text-box {
+    height: fit-content;
+}
+
+#gif-search-button {
+    height: fit-content;
+    margin-left: 10px;
+    display: flex;
+}
+
+.gif-search-results {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-auto-columns: 1fr, 1fr;
+    flex-wrap: wrap;
 }
 
 #messages-container {
@@ -200,7 +223,6 @@ footer {
 }
 
 #room-information-card {
-    height: 6em;
     display: grid;
     grid-template-rows: 1fr 1fr;
     justify-content: center;
