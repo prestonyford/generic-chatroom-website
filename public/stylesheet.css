@@ -143,6 +143,7 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 10px;
+    overflow-y: hidden;
 }
 
 .gif-search-div {
@@ -165,6 +166,8 @@ footer {
 #gif-search-results {
     display: flex;
     flex-wrap: wrap;
+    overflow-y: auto;
+    gap: 6px;
 }
 
 #messages-container {

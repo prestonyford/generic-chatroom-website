@@ -152,6 +152,24 @@ async function search_gif(search_term) {
     }
 }
 
+function create_gif_element(gif_object) {
+    const tiny_gif = gif_object.media_formats.tinygif;
+    console.log(tiny_gif);
+
+    const element = document.createElement("div");
+    // element.classList.add("");
+    const image_element = document.createElement("img")
+    image_element.src = tiny_gif.url;
+    element.appendChild(image_element);
+
+    return element;
+}
+
 function display_search_results(results) {
-    console.log(results);
+    // console.log(results);
+    const results_window = document.getElementById('gif-search-results');
+    results_window.innerHTML = "";
+    for (result of results) {
+        results_window.appendChild(create_gif_element(result))
+    }
 }
