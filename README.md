@@ -46,7 +46,7 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 
 ## Service Deliverable
 - Messages are immediately loaded in from the server when joining the room via a backend endpoint
-- Sending messages uses a backend endpoint and stores them in memory
+- Sending messages uses a backend endpoint and stores them in the server's memory, to be accessed when a new user joins the room
 - Left sidebar has been changed to a GIF search powered by Tenor
 - GIF search calls my endpoint, which calls the 3rd-party Tenor API. It is then returned to the frontend which parses the results and displays them
   - Click on a resulting image to send it to chat
