@@ -209,6 +209,12 @@ footer {
     border-bottom-left-radius: 0;
 }
 
+.message-image > img {
+    max-width: 25em;
+    max-height: 25em;
+    border-radius: 6px;
+}
+
 .message-author {
     font-style: italic;
     color: rgb(80,80,80);

@@ -1,3 +1,5 @@
+const username = localStorage.getItem("username");
+
 async function loadHistory() {
     try {
         const response = await fetch('/api/history?room=A');
@@ -6,8 +8,16 @@ async function loadHistory() {
             if (message.type === "system") { // System message
                 create_message_element(create_system_message(message.content));
             }
-            else{ // Other message
-                create_message_element(create_other_message(message.author, message.content));
+            else if (message.type === "image") { // Image message
+                create_message_element(create_image_message(message.author, message.content));
+            }
+            else{ // Normal message
+                if (message.author === username) {
+                    create_message_element(create_self_message(message.content));
+                }
+                else {
+                    create_message_element(create_other_message(message.author, message.content));
+                }
             }
         }
     }
@@ -45,7 +55,7 @@ window.onload = async () => {
     })
 
     // Send join message
-    send_message("system", "", `${localStorage.getItem("username")} joined the room`);
+    send_message("system", "", `${username} joined the room`);
 }
 
 function create_system_message(content) {
@@ -84,6 +94,30 @@ function create_self_message(content) {
     return new_message;
 }
 
+function create_image_message(author, image_url) {
+    const new_message = document.createElement("div");
+    new_message.classList.add("message");
+    new_message.classList.add("message-image");
+
+    if (author === username) {
+        new_message.classList.add("message-self");
+    }
+    else {
+        const author_span = document.createElement("span");
+        author_span.classList.add("message-author");
+        author_span.style.marginBottom = '4px';
+        author_span.innerText = author;
+        new_message.appendChild(author_span);
+        new_message.classList.add("message-other");
+    }
+    
+    const image_element = document.createElement("img");
+    image_element.src = image_url;
+    new_message.appendChild(image_element);
+
+    return new_message;
+}
+
 function create_message_element(message) {
     const container = document.getElementById("messages-container");
     const move = container.scrollTop === container.scrollHeight;
@@ -98,7 +132,7 @@ function read_message_and_send() {
     const text_box = document.getElementById("message-text-box");
     const content = text_box.value;
     if (content === "") return;
-    send_message("message", `${localStorage.getItem("username")}`, content)
+    send_message("message", `${username}`, content)
     text_box.value = "";
 }
 
@@ -121,6 +155,9 @@ async function send_message(type, author, content) {
 
         if (message.type === "system"){
             create_message_element(create_system_message(message.content));
+        }
+        else if (message.type === "image") {
+            create_message_element(create_image_message(username, message.content));
         }
         else {
             create_message_element(create_self_message(message.content));
@@ -153,14 +190,20 @@ async function search_gif(search_term) {
 }
 
 function create_gif_element(gif_object) {
-    const tiny_gif = gif_object.media_formats.tinygif;
-    console.log(tiny_gif);
+    const tiny_gif = gif_object.media_formats.tinygif; // Smaller file for previews
+    const gif = gif_object.media_formats.gif; // Actual file for sending
+    console.log(gif_object);
 
     const element = document.createElement("div");
     // element.classList.add("");
     const image_element = document.createElement("img")
     image_element.src = tiny_gif.url;
     element.appendChild(image_element);
+
+    // Click event listener
+    element.addEventListener("click", () => {
+        send_message("image", username, gif.url);
+    });
 
     return element;
 }

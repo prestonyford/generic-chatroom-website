@@ -131,6 +131,11 @@ let room_data = {
                 author: "Ki-Adi-Mundi",
                 content: "What about the droid attack on the Wookiees?"
             },
+            {
+                type: "image",
+                author: "test author",
+                content: "https://media.tenor.com/ZWISyuXdxgkAAAAM/you-wont-believe-dig.gif"
+            },
         ]
     },
     roomB: {
