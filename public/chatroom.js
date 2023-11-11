@@ -204,6 +204,7 @@ function create_gif_element(gif_object) {
     element.addEventListener("click", () => {
         send_message("image", username, gif.url);
     });
+    element.style.cursor = 'pointer';
 
     return element;
 }
