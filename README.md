@@ -43,3 +43,10 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
   - Header will shrink if width is too small, causing current user count to disappear
   - Chatroom page left side will disappear if width is too small
 - Icon images for user counts and send button
+
+## Service Deliverable
+- Messages are immediately loaded in from the server when joining the room via a backend endpoint
+- Sending messages uses a backend endpoint and stores them in memory
+- Left sidebar has been changed to a GIF search powered by Tenor
+- GIF search calls my endpoint, which calls the 3rd-party Tenor API. It is then returned to the frontend which parses the results and displays them
+  - Click on a resulting image to send it to chat
