@@ -6,17 +6,17 @@ async function loadHistory() {
         data = await response.json();
         for (const message of data.history) {
             if (message.type === "system") { // System message
-                create_message_element(create_system_message(message.content));
+                insert_message_element(create_system_message_element(message.content));
             }
             else if (message.type === "image") { // Image message
-                create_message_element(create_image_message(message.author, message.content));
+                insert_message_element(create_image_message_element(message.author, message.content));
             }
             else{ // Normal message
                 if (message.author === username) {
-                    create_message_element(create_self_message(message.content));
+                    insert_message_element(create_self_message_element(message.content));
                 }
                 else {
-                    create_message_element(create_other_message(message.author, message.content));
+                    insert_message_element(create_other_message_element(message.author, message.content));
                 }
             }
         }
@@ -55,10 +55,10 @@ window.onload = async () => {
     })
 
     // Send join message
-    send_message("system", "", `${username} joined the room`);
+    send_message_to_server("system", "", `${username} joined the room`);
 }
 
-function create_system_message(content) {
+function create_system_message_element(content) {
     const new_message = document.createElement("div");
     new_message.classList.add("message-system");
 
@@ -69,7 +69,7 @@ function create_system_message(content) {
     return new_message;
 }
 
-function create_other_message(author, content) {
+function create_other_message_element(author, content) {
     const new_message = document.createElement("div");
     new_message.classList.add("message");
     new_message.classList.add("message-other");
@@ -86,7 +86,7 @@ function create_other_message(author, content) {
     return new_message;
 }
 
-function create_self_message(content) {
+function create_self_message_element(content) {
     const new_message = document.createElement("div");
     new_message.classList.add("message");
     new_message.classList.add("message-self");
@@ -94,7 +94,7 @@ function create_self_message(content) {
     return new_message;
 }
 
-function create_image_message(author, image_url) {
+function create_image_message_element(author, image_url) {
     const new_message = document.createElement("div");
     new_message.classList.add("message");
     new_message.classList.add("message-image");
@@ -118,7 +118,7 @@ function create_image_message(author, image_url) {
     return new_message;
 }
 
-function create_message_element(message) {
+function insert_message_element(message) {
     const container = document.getElementById("messages-container");
     const move = container.scrollTop === container.scrollHeight;
     container.appendChild(message);
@@ -132,11 +132,11 @@ function read_message_and_send() {
     const text_box = document.getElementById("message-text-box");
     const content = text_box.value;
     if (content === "") return;
-    send_message("message", `${username}`, content)
+    send_message_to_server("message", `${username}`, content)
     text_box.value = "";
 }
 
-async function send_message(type, author, content) {
+async function send_message_to_server(type, author, content) {
     try {
         const response = await fetch('/api/history', {
             method: 'POST',
@@ -154,13 +154,13 @@ async function send_message(type, author, content) {
         const message = await response.json();
 
         if (message.type === "system"){
-            create_message_element(create_system_message(message.content));
+            insert_message_element(create_system_message_element(message.content));
         }
         else if (message.type === "image") {
-            create_message_element(create_image_message(username, message.content));
+            insert_message_element(create_image_message_element(username, message.content));
         }
         else {
-            create_message_element(create_self_message(message.content));
+            insert_message_element(create_self_message_element(message.content));
         }
     } 
     catch(error) {
@@ -202,7 +202,7 @@ function create_gif_element(gif_object) {
 
     // Click event listener
     element.addEventListener("click", () => {
-        send_message("image", username, gif.url);
+        send_message_to_server("image", username, gif.url);
     });
     element.style.cursor = 'pointer';
 

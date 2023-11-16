@@ -205,7 +205,7 @@ function pushMessage(room, message) {
 
 async function searchTenor(search_term) {
     try {
-        const response = await fetch(`https://tenor.googleapis.com/v2/search?q=${search_term}&key=${keys['tenor']}&limit=8`);
+        const response = await fetch(`https://tenor.googleapis.com/v2/search?q=${search_term}&key=${keys['tenor']}&limit=16`);
         const results = await response.json();
         return results;
     }
