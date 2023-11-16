@@ -32,13 +32,13 @@ window.onload = async () => {
     // Subscribe to events
     const send_btn = document.getElementById("send-message-button");
     send_btn.addEventListener("click", () => {
-        read_message_and_send();
+        send_message_to_server(...Object.values(read_message_textbox()))
     });
 
     const message_text_box = document.getElementById("message-text-box");
     message_text_box.addEventListener("keydown", (e) => {
         if (e.key === 'Enter'){
-            read_message_and_send();
+            send_message_to_server(...Object.values(read_message_textbox()))
         }
     })
 
@@ -124,16 +124,16 @@ function insert_message_element(message) {
     container.appendChild(message);
 }
 
-function read_textbox(){
-    
-}
-
-function read_message_and_send() {
+function read_message_textbox() {
     const text_box = document.getElementById("message-text-box");
     const content = text_box.value;
     if (content === "") return;
-    send_message_to_server("message", `${username}`, content)
     text_box.value = "";
+    return {
+        type: "message",
+        author: username,
+        content: content
+    }
 }
 
 async function send_message_to_server(type, author, content) {
@@ -190,8 +190,8 @@ async function search_gif(search_term) {
 }
 
 function create_gif_element(gif_object) {
-    const tiny_gif = gif_object.media_formats.tinygif; // Smaller file for previews
-    const gif = gif_object.media_formats.gif; // Actual file for sending
+    const tiny_gif = gif_object.media_formats.tinygif; // Smaller image for previews
+    const gif = gif_object.media_formats.gif; // Actual image for sending
     console.log(gif_object);
 
     const element = document.createElement("div");
