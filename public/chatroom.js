@@ -44,13 +44,13 @@ window.onload = async () => {
 
     const search_btn = document.getElementById("gif-search-button");
     search_btn.addEventListener("click", () => {
-        read_term_and_search();
+        search_gif(read_gif_search_textbox());
     })
 
     const search_text_box = document.getElementById("gif-search-text-box");
     search_text_box.addEventListener("keydown", (e) => {
         if (e.key === 'Enter'){
-            read_term_and_search();
+            search_gif(read_gif_search_textbox());
         }
     })
 
@@ -170,12 +170,12 @@ async function send_message_to_server(type, author, content) {
 
 // GIF
 
-function read_term_and_search() {
+function read_gif_search_textbox() {
     const text_box = document.getElementById("gif-search-text-box");
     const content = text_box.value;
     if (content === "") return;
-    search_gif(content);
     text_box.value = "";
+    return content;
 }
 
 async function search_gif(search_term) {
