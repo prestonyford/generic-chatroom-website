@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-const config = require('./config')
+const config = require('./apiConfig.js')
+const DB = require('./database.js');
 
 // API
-let keys = {};
-keys['tenor'] = config.TENOR_API_KEY;
+let api_keys = {};
+api_keys['tenor'] = config.TENOR_API_KEY;
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -20,9 +21,9 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // Get history
-apiRouter.get('/history', (req, res) => {
+apiRouter.get('/history', async (req, res) => {
     const { room } = req.query;
-    res.send(getMessageHistory(room));
+    res.send(await getMessageHistory(room));
 });
 
 // Push message
@@ -167,27 +168,39 @@ let room_data = {
     }
 };
 
-function getMessageHistory(room) {
-    if (room === 'A'){
-        return room_data.roomA;
+async function getMessageHistory(room) {
+    const history = await DB.getMessageHistory(room, 20)
+    console.log(history);
+    return {
+        history: history
     }
-    else if (room === 'B'){
-        return room_data.roomB;
-    }
-    else if (room === 'C'){
-        return room_data.roomC;
-    }
-    else if (room === 'D'){
-        return room_data.roomD;
-    }
-    else {
+    // if (room === 'A'){
+    //     const history = await DB.getMessageHistory('A', 20)
+    //     console.log(history);
+    //     return room_data.roomA;
+    // }
+    // else if (room === 'B'){
+    //     return room_data.roomB;
+    // }
+    // else if (room === 'C'){
+    //     return room_data.roomC;
+    // }
+    // else if (room === 'D'){
+    //     return room_data.roomD;
+    // }
+    // else {
 
-    }
+    // }
 }
 
-function pushMessage(room, message) {
+async function pushMessage(room, message) {
+
+    // Date property is added server-side right here
+    message.date = Date.now();
+
     if (room === 'A'){
         room_data.roomA.history.push(message);
+        await DB.addMessage(room, message);
     }
     else if (room === 'B'){
         room_data.roomB.history.push(message);
@@ -205,7 +218,7 @@ function pushMessage(room, message) {
 
 async function searchTenor(search_term) {
     try {
-        const response = await fetch(`https://tenor.googleapis.com/v2/search?q=${search_term}&key=${keys['tenor']}&limit=16`);
+        const response = await fetch(`https://tenor.googleapis.com/v2/search?q=${search_term}&key=${api_keys['tenor']}&limit=16`);
         const results = await response.json();
         return results;
     }

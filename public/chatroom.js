@@ -4,7 +4,8 @@ async function loadHistory() {
     try {
         const response = await fetch('/api/history?room=A');
         data = await response.json();
-        for (const message of data.history) {
+        for (let i = data.history.length - 1; i >= 0; --i) {
+            const message = data.history[i];
             if (message.type === "system") { // System message
                 insert_message_element(create_system_message_element(message.content));
             }
