@@ -57,3 +57,9 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 - Left sidebar has been changed to a GIF search powered by Tenor
 - GIF search calls my endpoint, which calls the 3rd-party Tenor API. It is then returned to the frontend which parses the results and displays them
   - Click on a resulting image to send it to chat
+
+## Database Deliverable
+- Connected MongoDB Atlas
+  - Messages are pushed to the database and stored through existing endpoints
+  - When a user joins the room, only the last 20 messages are retrieved from the database
+    - Backend index.js attaches a date/time property to the message object so that it can be sorted accordingly
