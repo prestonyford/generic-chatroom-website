@@ -17,10 +17,19 @@ body {
     background: linear-gradient(#D1E7DD, #FFFFFF);
 }
 
-.login-window {
+#login-window {
     display: flex;
     flex-direction: column;
     align-self: center;
+}
+
+#logout-window {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    width: 40vh;
+    padding: 30px 40px;
+    gap: 10px;
 }
 
 #username {

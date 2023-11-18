@@ -1,4 +1,14 @@
 window.onload = function() {
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById("login-window").style.display = "none";
+        document.getElementById("logout-window").style.display = 'flex';
+        document.getElementById("username-logout-window").innerHTML = username;
+    }
+    else{
+        document.getElementById("login-window").style.display = "flex";
+        document.getElementById("logout-window").style.display = 'none';
+    }
 
     // Login
     const username_login_input = document.getElementById("username-login-field");
@@ -29,17 +39,36 @@ window.onload = function() {
     username_create_input.addEventListener("keydown", enter_key_pressed_on_create);
     password_create_input.addEventListener("keydown", enter_key_pressed_on_create);
     submit_btn_create.addEventListener("click", create_account);
+
+    // Logout
+    document.getElementById("logout-button").addEventListener("click", () => {
+        logout();
+    })
 }
 
-function attempt_login(username, password) {
-    if (username === "") {
-        alert("Please enter valid login credentials (just put a non-empty username)")
-        return;
+async function attempt_login(username, password) {
+    const response = await fetch('/api/auth/login', {
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    if (response.ok) {
+        localStorage.setItem("username", username);
+        window.location.href = "rooms.html";
     }
+    else {
+        alert("Incorrect login credentials");
+    }
+}
 
-    localStorage.setItem("username", username)
-
-    window.location.href = "rooms.html";
+function logout() {
+    localStorage.removeItem('username');
+    fetch(`/api/auth/logout`, {
+        method: 'delete',
+    }).then(() => (window.location.href = 'index.html'));
 }
 
 async function create_account() {

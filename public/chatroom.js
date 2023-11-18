@@ -3,7 +3,13 @@ const username = localStorage.getItem("username");
 async function loadHistory() {
     try {
         const response = await fetch('/api/history?room=A');
+
+        if (!response.ok) {
+            window.location.href = "index.html";
+        }
+
         data = await response.json();
+
         for (let i = data.history.length - 1; i >= 0; --i) {
             const message = data.history[i];
             if (message.type === "system") { // System message

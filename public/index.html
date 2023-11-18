@@ -43,7 +43,7 @@
 
 
         <main class="content container-fluid">
-            <div class="login-window">
+            <div id="login-window" style="display: none">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-login-tab" data-bs-toggle="tab" data-bs-target="#nav-login" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Login</button>
@@ -88,6 +88,14 @@
                         </div>
                     </div>
                 </div>                  
+            </div>
+
+            <div id="logout-window" class="card" style="display: none">
+                <h2 id="username-logout-window">USERNAME</h2>
+                <div>
+                    <a type="button" href="rooms.html" class="btn btn-primary">View Rooms</a>
+                    <button type="button" id="logout-button" class="btn btn-secondary">Logout</button>
+                </div>
             </div>
         </main>
 
