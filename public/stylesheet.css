@@ -18,9 +18,9 @@ body {
 }
 
 .login-window {
-    display: grid;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
 }
 
 #username {
@@ -84,6 +84,7 @@ main {
 }
 
 #login-form {
+    width: 40vh;
     padding: 30px 40px
 }
 
