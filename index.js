@@ -3,6 +3,8 @@ const app = express();
 const config = require('./apiConfig.js')
 const DB = require('./database.js');
 
+const authCookieName = 'token';
+
 // API
 let api_keys = {};
 api_keys['tenor'] = config.TENOR_API_KEY;
@@ -19,6 +21,20 @@ app.use(express.static('public'));
 // Router for service endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+apiRouter.post('/auth/create', async (req, res) => {
+    if (await DB.getUser(req.body.username)) {
+        res.status(409).send({ msg: 'Existing user' });
+    }
+    else {
+        console.log(`Creating user: ${req.body.username}`);
+        const user = await DB.createUser(req.body.username, req.body.password);
+        setAuthCookie(res, user.token);
+        res.send({
+            id: user._id,
+        });
+    }
+});
 
 // Get history
 apiRouter.get('/history', async (req, res) => {
@@ -69,4 +85,13 @@ async function searchTenor(search_term) {
     catch {
         console.log("Error searching")
     }
+}
+
+// setAuthCookie in the HTTP response
+function setAuthCookie(res, authToken) {
+    res.cookie(authCookieName, authToken, {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'strict',
+    });
 }

@@ -16,7 +16,7 @@ window.onload = function() {
     submit_btn_login.addEventListener("click", () => { attempt_login(username_login_input.value, password_login_input.value)});
 
     // Create
-    const username_create_input = document.getElementById("username-logcreatein-field");
+    const username_create_input = document.getElementById("username-create-field");
     const password_create_input = document.getElementById("password-create-field");
     const submit_btn_create = document.getElementById("submit-btn-create");
 
@@ -42,7 +42,7 @@ function attempt_login(username, password) {
     window.location.href = "rooms.html";
 }
 
-function create_account() {
+async function create_account() {
     const username = document.getElementById("username-create-field").value;
     const password = document.getElementById("password-create-field").value;
 
@@ -52,6 +52,18 @@ function create_account() {
     }
 
     // Call endpoint
+    const response = await fetch('/api/auth/create', {
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
 
-    // If success, call attempt_login()
+    if (response.ok) {
+        attempt_login(username, password);
+    }
+    else {
+        alert("An account with this username already exists");
+    }
 }
