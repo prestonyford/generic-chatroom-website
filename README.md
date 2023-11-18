@@ -63,3 +63,7 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
   - Messages are pushed to the database and stored through existing endpoints
   - When a user joins the room, only the last 20 messages are retrieved from the database
     - Backend index.js attaches a date/time property to the message object so that it can be sorted accordingly
+
+## Login Deliverable
+- Users can now create an account and log in with credentials stored in the database
+- Message history cannot be retrieved unless logged in, and will take the user to the login page if they are not logged in
