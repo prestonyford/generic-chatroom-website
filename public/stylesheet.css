@@ -181,6 +181,7 @@ footer {
 }
 
 #gif-search-results > div {
+    flex: 1;
     width: fit-content;
 }
 

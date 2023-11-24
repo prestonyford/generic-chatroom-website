@@ -73,6 +73,16 @@ secureApiRouter.use(async (req, res, next) => {
     }
 });
 
+// Check Login
+secureApiRouter.get('/check-login-cookie', (req, res) => {
+    if (req.cookies[authCookieName]) {
+        res.status(200).send();
+    }
+    else {
+        res.status(404).send();
+    }
+  });
+
 // Get history
 secureApiRouter.get('/history', async (req, res) => {
     const { room } = req.query;

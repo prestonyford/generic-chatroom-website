@@ -1,6 +1,8 @@
-window.onload = function() {
+window.onload = async function() {
+
+    const response = await fetch('/api/check-login-cookie')
     const username = localStorage.getItem('username');
-    if (username) {
+    if (username && response.ok) {
         document.getElementById("login-window").style.display = "none";
         document.getElementById("logout-window").style.display = 'flex';
         document.getElementById("username-logout-window").innerHTML = username;
