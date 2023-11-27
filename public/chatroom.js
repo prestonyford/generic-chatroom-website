@@ -34,8 +34,6 @@ async function loadHistory() {
 }
 
 window.onload = async () => {
-    
-
     await loadHistory()
 
     // Subscribe to events
@@ -63,10 +61,14 @@ window.onload = async () => {
         }
     })
 
-    // Send join message
-    send_message_to_server("system", "", `${username} joined the room`);
-
     subscribe_left_window_resize()
+
+    // Send join message
+    await send_message_to_server("system", "", `${username} joined the room`);
+
+    const messages_container = document.getElementById('messages-container');
+    messages_container.scrollTop = 0.5
+    
 }
 
 function create_system_message_element(content) {
@@ -132,7 +134,18 @@ function create_image_message_element(author, image_url) {
 function insert_message_element(message) {
     const messages_container = document.getElementById('messages-container');
     // const move = container.scrollTop === container.scrollHeight;
+    let scroll = false;
+    if (messages_container.scrollTop >= -10) {
+        scroll = true;
+    }
+
     messages_container.prepend(message);
+
+    // Chrome bad
+    if (scroll === true) {
+        console.log("scrolling");
+        messages_container.scrollTop = 0.5;  
+    }
 }
 
 function read_message_textbox() {

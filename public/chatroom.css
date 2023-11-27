@@ -32,10 +32,12 @@
 }
 
 #gif-search-results {
+    flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
     overflow-y: auto;
     gap: 6px;
+    padding-right: 10px;
 }
 
 #gif-search-results > div {
