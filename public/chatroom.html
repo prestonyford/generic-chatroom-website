@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link href="stylesheet.css" rel="stylesheet">
-        <script src="mockdb.js"></script>
         <script src="chatroom.js"></script>
+        <script src="mockdb.js"></script>
     </head>
     <body>
         <header class="sticky-top border-bottom">
@@ -34,71 +34,47 @@
                         </ul>
                     </div>
                 </div>
-                <!-- <div class="card" id="room-information-card">
-                    <h3>Room <span class="room-name">A</span></h2>
-                    <div class="room-information-card-user-count">
-                        <p>
-                            <span><img src="icons/icons8-user-30.png" height="20px"></span>
-                            <span class="active-users-room-a">3</span>
-                            <span>/ 20</span>
-                        </p>
-                    </div>
-                </div> -->
             </nav>
         </header>
 
-
-        <main class="chatroom-window">
-            <div class="chatroom-right-window">
-                <div id="messages-container">
-                    
-                </div>
-            </div>
-
-            <div class="chatroom-left-window bg-light">
-                <!-- <div class="card" id="room-information-card">
-                    <h3>Room <span class="room-name">A</span></h2>
-                    <div class="room-information-card-user-count">
-                        <p>
-                            <span><img src="icons/icons8-user-30.png" height="20px"></span>
-                            <span class="active-users-room-a">3</span>
-                            <span>/ 20</span>
-                        </p>
+        <main style="display: flex; flex-direction: column; justify-content: start; overflow-y: hidden;">
+            <div id="main-content" style="height: 100%; display: grid; grid-template-columns: 1fr 2fr; grid-template-rows: auto;">
+                <div id="chatroom-left-window" class="bg-light" style="padding: 10px; display: flex; flex-direction: column; overflow-y: hidden;">
+                    <div class="gif-search-div">
+                        <input type="text" class="form-control" id="gif-search-text-box" placeholder="Search for a GIF...">
+                        <button type="submit" class="btn btn-primary" id="gif-search-button">
+                            <span>Search</span>
+                        </button>
                     </div>
-                </div> -->
-                <div class="gif-search-div">
-                    <input type="text" class="form-control" id="gif-search-text-box" placeholder="Search for a GIF...">
-                    <button type="submit" class="btn btn-primary" id="gif-search-button">
-                        <span>Search</span>
-                    </button>
+                    <div id="gif-search-results" style="overflow-y: auto; flex-grow: 1;"></div>
+                    <a class="btn btn-outline-danger" id="change-room-button" href="rooms.html">
+                        <span class="change-room-button-full-text">Leave Room</span>
+                        <span class="change-room-button-short-text">Leave</span>
+                    </a>
                 </div>
-                <div id="gif-search-results">
-                    
+                <div id="chatroom-right-window" style="max-height: 100%; display: flex; flex-direction: column; overflow: hidden;">
+                    <div id="messages-container" style="flex: 1; display: flex; flex-direction: column-reverse; overflow-y: auto; padding: 0 10px;">
+                    </div>
+                    <div class="user-message-input" style="display: flex; margin: 10px;">
+                        <input id="message-text-box" class="form-control" type="text" placeholder="Enter a message...">
+                        <button id="send-message-button" class="btn btn-primary" type="submit">
+                            <span>Send</span>
+                            <img src="icons/icons8-send-30.png" width="20px">
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>
 
-        <footer class="chatroom-bottom-window bg-light">
-            <a class="btn btn-outline-danger change-room-button" href="rooms.html">
-                <span class="change-room-button-full-text">Leave Room</span>
-                <span class="change-room-button-short-text">Leave</span>
-            </a>
-            <div class="user-message-input">
-                <input type="text" class="form-control" id="message-text-box" placeholder="Enter a message...">
-                <button type="submit" class="btn btn-primary" id="send-message-button">
-                    <span>Send</span>
-                    <img src="icons/icons8-send-30.png" width="20px">
-                </button>
-            </div>
-            <div class="chatroom-footer green-footer">
-                <nav class="border-top">
-                    <div class="container-fluid">
-                        <span class="text-muted">Preston Ford •</span>
-                        <a class="text-muted" href="https://github.com/prestonyford/startup">GitHub repo</a>
-                    </div>
-                </nav>
-            </div>
+        <footer class="green-footer">
+            <nav class="border-top">
+                <div class="container-fluid">
+                    <span class="text-muted">Preston Ford •</span>
+                    <a class="text-muted" href="https://github.com/prestonyford/startup">GitHub repo</a>
+                </div>
+            </nav>
         </footer>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
 </html>

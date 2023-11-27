@@ -11,7 +11,7 @@ async function loadHistory() {
         data = await response.json();
 
         for (let i = data.history.length - 1; i >= 0; --i) {
-            const message = data.history[i];
+            const message = data.history[i]
             if (message.type === "system") { // System message
                 insert_message_element(create_system_message_element(message.content));
             }
@@ -34,6 +34,8 @@ async function loadHistory() {
 }
 
 window.onload = async () => {
+    
+
     await loadHistory()
 
     // Subscribe to events
@@ -63,6 +65,8 @@ window.onload = async () => {
 
     // Send join message
     send_message_to_server("system", "", `${username} joined the room`);
+
+    subscribe_left_window_resize()
 }
 
 function create_system_message_element(content) {
@@ -126,9 +130,9 @@ function create_image_message_element(author, image_url) {
 }
 
 function insert_message_element(message) {
-    const container = document.getElementById("messages-container");
-    const move = container.scrollTop === container.scrollHeight;
-    container.appendChild(message);
+    const messages_container = document.getElementById('messages-container');
+    // const move = container.scrollTop === container.scrollHeight;
+    messages_container.prepend(message);
 }
 
 function read_message_textbox() {
@@ -223,4 +227,18 @@ function display_search_results(results) {
     for (result of results) {
         results_window.appendChild(create_gif_element(result))
     }
+}
+
+function subscribe_left_window_resize() {
+    // const left_window = document.getElementById('chatroom-left-window');
+    // const chatroom_bottom_window = document.getElementById('chatroom-bottom-window');
+    // ro = new ResizeObserver((entries) => {
+    //     for (const entry of entries) {
+            
+    //         const width = entry.contentRect.width;
+    //         chatroom_bottom_window.style.gridTemplateColumns = `${width}px 1fr`;
+    //         console.log(width);
+    //     }
+    // });
+    // ro.observe(left_window);
 }
