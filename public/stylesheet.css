@@ -7,7 +7,6 @@ body {
     flex-direction: column;
     height: 100vh;
     max-height: 100vh;
-    
 }
 
 .green-header {
@@ -118,77 +117,6 @@ footer {
     width: 100%;
 }
 
-.gif-search-div {
-    display: flex;
-    flex-direction: row;
-    height: fit-content;
-    margin-bottom: 10px;
-}
-
-#gif-search-text-box {
-    height: fit-content;
-}
-
-#gif-search-button {
-    height: fit-content;
-    margin-left: 10px;
-    display: flex;
-}
-
-#gif-search-results {
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: auto;
-    gap: 6px;
-}
-
-#gif-search-results > div {
-    flex: 1;
-    width: fit-content;
-}
-
-.message {
-    /* position: relative; */
-    max-width: 60%;
-    padding: 6px 10px;
-    margin: 6px;
-    border-radius: 14px;
-}
-
-.message-self {
-    align-self: end;
-    background-color: #addb4f;
-    border-bottom-right-radius: 0;
-}
-
-.message-other {
-    align-self: start;
-    background-color: lightgrey;
-    display: flex;
-    flex-direction: column;
-    border-bottom-left-radius: 0;
-}
-
-.message-image > img {
-    max-width: 25em;
-    max-height: 25em;
-    border-radius: 6px;
-}
-
-.message-author {
-    font-style: italic;
-    color: rgb(80,80,80);
-    font-size: smaller;
-    margin-bottom: -2px;
-}
-
-.message-system {
-    align-self: center;
-    font-style: italic;
-    color:grey;
-    padding: 6px;
-}
-
 #room-information-card {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -210,45 +138,8 @@ footer {
     justify-content: center;
 }
 
-#change-room-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.change-room-button-short-text {
-    display: none;
-}
-
-#change-room-button > p {
-    white-space: nowrap;
-}
-
-#send-message-button {
-    margin-left: 10px;
-    align-self: flex-end;
-    display: flex;
-}
-
 @media (max-width: 600px) {
     .room-selection-div {
         width: 100%;
-    }
-    .chatroom-window {
-        grid-template-columns: 1fr
-    }
-    .chatroom-left-window {
-        display: none;
-    }
-    .change-room-button {
-        margin-right: 0px;
-    }
-    .change-room-button-full-text {
-        display: none;
-    }
-    .change-room-button-short-text {
-        display: inline-block;
-    }
-    #chatroom-bottom-window {
-        grid-template-columns: 72px 1fr;
     }
 }

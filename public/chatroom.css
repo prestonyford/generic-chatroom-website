@@ -1,0 +1,126 @@
+/* CHATROOM */
+
+#chatroom-left-window {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+}
+
+#main-content {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 478px 2fr;
+    grid-template-rows: auto;
+}
+
+.gif-search-div {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    margin-bottom: 10px;
+}
+
+#gif-search-text-box {
+    height: fit-content;
+}
+
+#gif-search-button {
+    height: fit-content;
+    margin-left: 10px;
+    display: flex;
+}
+
+#gif-search-results {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    gap: 6px;
+}
+
+#gif-search-results > div {
+    flex: 1;
+    width: fit-content;
+}
+
+.message {
+    /* position: relative; */
+    max-width: 60%;
+    padding: 6px 10px;
+    margin: 6px;
+    border-radius: 14px;
+}
+
+.message-self {
+    align-self: end;
+    background-color: #addb4f;
+    border-bottom-right-radius: 0;
+}
+
+.message-other {
+    align-self: start;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: 0;
+}
+
+.message-image > img {
+    max-width: 25em;
+    max-height: 25em;
+    border-radius: 6px;
+}
+
+.message-author {
+    font-style: italic;
+    color: rgb(80,80,80);
+    font-size: smaller;
+    margin-bottom: -2px;
+}
+
+.message-system {
+    align-self: center;
+    font-style: italic;
+    color:grey;
+    padding: 6px;
+}
+
+.change-room-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.change-room-button > span {
+    display: inline-block;
+}
+.change-room-button > p {
+    white-space: nowrap;
+}
+.change-room-button-small {
+    display: none;
+    margin-right: 10px;
+}
+
+#send-message-button {
+    margin-left: 10px;
+    align-self: flex-end;
+    display: flex;
+}
+
+@media (max-width: 1000px) {
+    #main-content {
+        grid-template-columns: 256px 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    #chatroom-left-window {
+        display: none;
+    }
+    #main-content {
+        grid-template-columns: 1fr
+    }
+    .change-room-button-small {
+        display: block;
+    }
+}
