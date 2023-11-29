@@ -92,7 +92,7 @@ secureApiRouter.get('/history', async (req, res) => {
 
 // Push message
 secureApiRouter.post('/history', (req, res) => {
-    pushMessage(req.body.room, req.body.message)
+    DB.addMessage(req.body.room, req.body.message)
 
     res.status(200).send(req.body.message)
 });
@@ -118,12 +118,6 @@ peerProxy(httpService);
 async function getMessageHistory(room) {
     const history = await DB.getMessageHistory(room, 20);
     return { history: history };
-}
-
-async function pushMessage(room, message) {
-    // Date property is added server-side right here
-    message.date = Date.now();
-    await DB.addMessage(room, message);
 }
 
 async function searchTenor(search_term) {

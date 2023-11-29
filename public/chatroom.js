@@ -246,18 +246,7 @@ class Chatroom {
     
     async send_message(message) {
         try {
-            // This is for other clients
             this.broadcastEvent(message);
-
-            // This is for pushing to database
-            await fetch('/api/history', {
-                method: 'POST',
-                headers: {'content-type': 'application/json'},
-                body: JSON.stringify({
-                    room: 'A',
-                    message: message
-                }),
-            });
             this.push_message(message);
         } 
         catch(error) {
@@ -267,7 +256,7 @@ class Chatroom {
 
     configureWebSocket() {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        const socket = new WebSocket(`${protocol}://${window.location.host}/ws?room=${this.room}&user=${username}`);
         socket.onopen = (event) => {
             this.send_message({
                 type: 'system',

@@ -41,6 +41,7 @@ async function createUser(username, password) {
 }
 
 async function addMessage(room, message) {
+    message.date = Date.now();
     if (room === 'A') {
         const result = await room_A_collection.insertOne(message);
         return result;

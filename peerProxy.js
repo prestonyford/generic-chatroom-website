@@ -1,3 +1,4 @@
+const DB = require('./database.js');
 const { WebSocketServer } = require('ws');
 const uuid = require('uuid');
 
@@ -15,12 +16,18 @@ function peerProxy(httpServer) {
     // Keep track of all the connections so we can forward messages
     let connections = [];
 
-    wss.on('connection', (ws) => {
-        const connection = { id: uuid.v4(), alive: true, ws: ws };
+    wss.on('connection', (ws, req) => {
+        const url = new URL(req.url, `http://${req.headers.host}`); // protocol doesn't matter, i'm just using this to parse the parameters
+        const room = url.searchParams.get('room');
+        const user = url.searchParams.get('user');
+        const connection = { id: uuid.v4(), alive: true, ws: ws, room: room, user: user };
         connections.push(connection);
-
+        console.log(`${user} joined room ${room}`);
+        
         // Forward messages to everyone except the sender
         ws.on('message', function message(data) {
+            // Add this to database
+            DB.addMessage(connection.room, JSON.parse(data.toString('utf-8')));
             connections.forEach((c) => {
                 if (c.id !== connection.id) {
                     c.ws.send(data);
@@ -34,6 +41,24 @@ function peerProxy(httpServer) {
                 if (o.id === connection.id) {
                     connections.splice(i, 1);
                     return true;
+                }
+            });
+            
+            const message = {
+                type: 'system',
+                author: connection.user,
+                content: `${connection.user} has left the room`
+            };
+            console.log(`${connection.user} left room ${connection.room}`);
+
+            // Add this to database
+            DB.addMessage(connection.room, message);
+
+            // Tell everyone that they left
+            connections.forEach((c) => {
+                if (c.room === connection.room) {
+                    // Needs to be sent as raw binary data
+                    c.ws.send(Buffer.from(JSON.stringify(message)), 'utf-8');
                 }
             });
         });
