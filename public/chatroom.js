@@ -223,8 +223,8 @@ class Chatroom {
         element.appendChild(image_element);
     
         // Click event listener
-        element.addEventListener("click", () => {
-            this.send_message({
+        element.addEventListener("click", async () => {
+            await this.send_message({
                 type: "image",
                 author: username,
                 content: gif.url
@@ -246,7 +246,18 @@ class Chatroom {
     
     async send_message(message) {
         try {
+            // This is for other clients
             this.broadcastEvent(message);
+
+            // This is for pushing to database
+            await fetch('/api/history', {
+                method: 'POST',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify({
+                    room: 'A',
+                    message: message
+                }),
+            });
             this.push_message(message);
         } 
         catch(error) {
