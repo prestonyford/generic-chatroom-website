@@ -3,6 +3,8 @@ const username = localStorage.getItem("username");
 const LeaveRoomEvent = 'userLeft';
 const JoinRoomEvent = 'userJoined';
 
+const self = this; // I keep making this mistake
+
 window.onload = async () => {
     const chatroom = new Chatroom('A');
     await chatroom.loadHistory();
@@ -42,9 +44,6 @@ window.onload = async () => {
 
     subscribe_left_window_resize()
 
-    // Send join message
-    await chatroom.send_message({type: "system", author: "", content: `${username} joined the room`});
-
     const messages_container = document.getElementById('messages-container');
     messages_container.scrollTop = 0.5
     
@@ -75,16 +74,16 @@ class Chatroom {
 
     async loadHistory() {
         try {
-            const response = await fetch(`/api/history?room=${room}`);
+            const response = await fetch(`/api/history?room=${this.room}`);
     
             if (!response.ok) {
                 window.location.href = "index.html";
             }
     
-            data = await response.json();
+            const data = await response.json();
     
             for (let i = data.history.length - 1; i >= 0; --i) {
-                self.push_message(data.history[i]);
+                this.push_message(data.history[i]);
             }
         }
         catch(error) {
@@ -241,7 +240,7 @@ class Chatroom {
         const results_window = document.getElementById('gif-search-results');
         results_window.innerHTML = "";
         for (const result of results) {
-            results_window.appendChild(create_gif_element(result))
+            results_window.appendChild(this.create_gif_element(result))
         }
     }
     
