@@ -67,3 +67,11 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 ## Login Deliverable
 - Users can now create an account and log in with credentials stored in the database
 - Message history cannot be retrieved unless logged in, and will take the user to the login page if they are not logged in
+
+## WebSocket Deliverable
+- Refactor of Chatroom HTML/CSS/JS
+- WebSocket is used to send and receive messages and display them
+  - Backend listens for WebSocket connection
+  - Frontend makes WebSocket connection with additional parameters: Room ID and username
+  - Backend will send a message to all connected sockets when one disconnects, saying "{USER} has left the room"
+- Message history endpoint is no longer used, updating the database is now handled by the WebSocket server
