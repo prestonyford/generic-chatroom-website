@@ -58,16 +58,12 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 - GIF search calls my endpoint, which calls the 3rd-party Tenor API. It is then returned to the frontend which parses the results and displays them
   - Click on a resulting image to send it to chat
 
-# 11/14/2023
-- Prof Jensen is looking for TAs next semester: lee@cs.byu.edu
-- Before something can be imported it must be exported. That's what module.exports is
-- Websockets are another protocol on top of HTTP, turns it from client/server to peer/peer
-  - Basically event-driven programming, you don't have to check the server all the time
-  - Client doesn't have to ask, server will just tell
-  - wss is the server, ws is the client
-- Maybe too off topic, but how is the function we attach to ws sent back to the client? plain text as HTTP?
-- Is HTTP used by everything/browsers?
-- ws is a protocol like HTTP is
-  - It is a websocket protocol
-  - https:// the stuff before :// is the protocol
-  - ws:// is another protocol for websockets
+## Database Deliverable
+- Connected MongoDB Atlas
+  - Messages are pushed to the database and stored through existing endpoints
+  - When a user joins the room, only the last 20 messages are retrieved from the database
+    - Backend index.js attaches a date/time property to the message object so that it can be sorted accordingly
+
+## Login Deliverable
+- Users can now create an account and log in with credentials stored in the database
+- Message history cannot be retrieved unless logged in, and will take the user to the login page if they are not logged in
