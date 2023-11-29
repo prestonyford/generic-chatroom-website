@@ -70,8 +70,9 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
 
 ## WebSocket Deliverable
 - Refactor of Chatroom HTML/CSS/JS
-- WebSocket is used to send and receive messages and display them
+- Chat WebSocket is used to send and receive messages and display them
   - Backend listens for WebSocket connection
   - Frontend makes WebSocket connection with additional parameters: Room ID and username
   - Backend will send a message to all connected sockets when one disconnects, saying "{USER} has left the room"
-- Message history endpoint is no longer used, updating the database is now handled by the WebSocket server
+  - Message history endpoint is no longer used, updating the database is now handled by the chat WebSocket server
+- A separate user count WebSocket is used to display live counts of currently online users; this number is displayed in the room selection page and the top-right of a chatroom page
