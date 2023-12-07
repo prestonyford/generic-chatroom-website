@@ -25,3 +25,8 @@ label {
 .loading {
     align-self: center;
 }
+
+#login-form {
+    width: 40vh;
+    padding: 30px 40px
+}

@@ -5,6 +5,8 @@ import { AuthState } from '../login/authState';
 import { RoomOption } from './room_option';
 import { LoadingBlocks } from '../loading/loading';
 
+import './room_selection.css';
+
 export function RoomSelection({ authState }) {
 	const navigate = useNavigate();
 

@@ -9,7 +9,7 @@ export function RoomOption({ name, count, disabled }) {
                 <p>
                     <span><img src="icons/icons8-user-30.png" height="20px" /></span>
                     <span className="active-users-room-a">{count}</span>
-                    <span>/20</span>
+                    <span> / 20</span>
                 </p>
             </div>
             <a className={`btn btn-outline-primary${disabled? ' disabled' : ''}`} href="chatroom.html">{disabled? 'Disabled' : 'Join'}</a>
