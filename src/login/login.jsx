@@ -1,23 +1,22 @@
 import React from 'react';
+
 import { AuthState } from './authState';
+import { LoadingBlocks } from '../loading/loading';
 
 import './login.css';
 
 export function Login({ username, authState, onAuthChange }) {
     const [usernameInput, setUsernameInput] = React.useState('');
     const [passwordInput, setPasswordInput] = React.useState('');
-    const [loadingScreen, setLoadingScreen] = React.useState(false);
-
-    React.useEffect(() => {
-        setLoadingScreen(false);
-    });
+    const [loading, setLoading] = React.useState(false);
 
     async function create_account() {
         if (usernameInput === "" || passwordInput === "") {
             alert("Please enter a valid username and password")
             return;
         }
-    
+
+        setLoading(true);
         // Call endpoint
         const response = await fetch('/api/auth/create', {
             method: 'post',
@@ -26,7 +25,8 @@ export function Login({ username, authState, onAuthChange }) {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         });
-    
+        setLoading(false);
+
         if (response.ok) {
             attempt_login();
         }
@@ -36,7 +36,7 @@ export function Login({ username, authState, onAuthChange }) {
     }
 
     async function attempt_login() {
-        setLoadingScreen(true);
+        setLoading(true);
         const response = await fetch('/api/auth/login', {
             method: 'post',
             body: JSON.stringify({ username: usernameInput, password: passwordInput }),
@@ -44,7 +44,8 @@ export function Login({ username, authState, onAuthChange }) {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         });
-    
+        setLoading(false);
+
         if (response.ok) {
             localStorage.setItem("username", usernameInput);
             onAuthChange(usernameInput, AuthState.Authenticated);
@@ -55,13 +56,15 @@ export function Login({ username, authState, onAuthChange }) {
     }
 
     function logout() {
-        setLoadingScreen(true);
+        setLoading(true);
         fetch(`/api/auth/logout`, {
             method: 'delete',
         }).then(() => {
             localStorage.removeItem('username');
             onAuthChange(usernameInput, AuthState.Unauthenticated)
-        });
+        }).finally(() => {
+            setLoading(false);
+        })
     }
 
     function handle_enter(e, target) {
@@ -72,8 +75,9 @@ export function Login({ username, authState, onAuthChange }) {
 
     return (
         <main className='container-fluid text-center'>
-            {(authState === AuthState.Unknown || loadingScreen) && <p className="loading text-secondary">Loading</p>}
-            {!loadingScreen && authState === AuthState.Unauthenticated && (
+            {loading && <LoadingBlocks />}
+            {(authState === AuthState.Unknown) && <p className="loading text-secondary">Loading</p>}
+            {authState === AuthState.Unauthenticated && (
                 <div id="login-window">
                     <nav>
                         <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -105,12 +109,12 @@ export function Login({ username, authState, onAuthChange }) {
                                 <h2 className="form-title">Create Account</h2>
                                 <div className="form-outline mb-4">
                                     <label className="form-label" htmlFor="username-input">Username</label>
-                                    <input type="text" id="username-create-field" className="username-input form-control" onChange={(e) => setUsernameInput(e.target.value)} onKeyDown={(e) => handle_enter(e, create_account)}/>
+                                    <input type="text" id="username-create-field" className="username-input form-control" onChange={(e) => setUsernameInput(e.target.value)} onKeyDown={(e) => handle_enter(e, create_account)} />
                                 </div>
 
                                 <div className="form-outline mb-4">
                                     <label className="form-label" htmlFor="password-input">Password</label>
-                                    <input type="password" id="password-create-field" className="password-input form-control" onChange={(e) => setPasswordInput(e.target.value)} onKeyDown={(e) => handle_enter(e, create_account)}/>
+                                    <input type="password" id="password-create-field" className="password-input form-control" onChange={(e) => setPasswordInput(e.target.value)} onKeyDown={(e) => handle_enter(e, create_account)} />
                                 </div>
 
                                 <div className="d-flex justify-content-end">
@@ -122,10 +126,10 @@ export function Login({ username, authState, onAuthChange }) {
                 </div>
             )}
 
-            {!loadingScreen && authState === AuthState.Authenticated && (<div id="logout-window" className="card">
+            {authState === AuthState.Authenticated && (<div id="logout-window" className="card">
                 <h2 id="username-logout-window">{username}</h2>
                 <div>
-                    <a type="button" className="btn btn-primary" style={{marginRight: '10px'}}>View Rooms</a>
+                    <a type="button" className="btn btn-primary" style={{ marginRight: '10px' }}>View Rooms</a>
                     <button type="button" id="logout-button" className="btn btn-secondary" onClick={logout}>Logout</button>
                 </div>
             </div>
