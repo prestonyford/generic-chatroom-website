@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { AuthState } from './authState';
 import { LoadingBlocks } from '../loading/loading';
@@ -9,6 +10,8 @@ export function Login({ username, authState, onAuthChange }) {
     const [usernameInput, setUsernameInput] = React.useState('');
     const [passwordInput, setPasswordInput] = React.useState('');
     const [loading, setLoading] = React.useState(false);
+
+    const navigate = useNavigate();
 
     async function create_account() {
         if (usernameInput === "" || passwordInput === "") {
@@ -129,7 +132,7 @@ export function Login({ username, authState, onAuthChange }) {
             {authState === AuthState.Authenticated && (<div id="logout-window" className="card">
                 <h2 id="username-logout-window">{username}</h2>
                 <div>
-                    <a type="button" className="btn btn-primary" style={{ marginRight: '10px' }}>View Rooms</a>
+                    <a type="button" className="btn btn-primary" onClick={() => navigate('/room-selection')} style={{ marginRight: '10px' }}>View Rooms</a>
                     <button type="button" id="logout-button" className="btn btn-secondary" onClick={logout}>Logout</button>
                 </div>
             </div>

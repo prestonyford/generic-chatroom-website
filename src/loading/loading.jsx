@@ -5,7 +5,7 @@ import './loading.css';
 
 export function LoadingBlocks() {
     return (
-        <div class="loading-blocks-container">
+        <div className="loading-blocks-container">
             <Blocks
                 visible={true}
                 height="80"

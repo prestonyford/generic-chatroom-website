@@ -55,7 +55,7 @@ export default function App() {
                             setAuthState(new_authState);
                         }} />}
                         exact />
-                    <Route path='/room-selection' element={<RoomSelection />} />
+                    <Route path='/room-selection' element={<RoomSelection authState={authState}/>} />
                     <Route path='/chatroom' element={<Chatroom />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>

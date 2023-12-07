@@ -24,8 +24,6 @@ p {
     padding: 30px 40px;
     width: 540px;
     max-height: 98%;
-    /* Room seleciton window will be invisible until the login info is verified */
-    display: none;
     overflow-y: auto;
     align-items: center;
     align-self: center;

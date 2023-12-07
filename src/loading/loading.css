@@ -10,6 +10,7 @@
     width: 100px;
     height: 100px;
     background: white;
-    border: 1px solid gray;
+    border: 1px solid lightslategray;
+    border-radius: 4px;
     box-shadow: 8px 5px 5px rgba(0, 0, 0, .5);
 }
