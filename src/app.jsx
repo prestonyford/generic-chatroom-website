@@ -1,13 +1,13 @@
 import React from 'react';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './app.css';
 
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { RoomSelection } from './room_selection/room_selection';
 import { Chatroom } from './chatroom/chatroom';
 import { AuthState } from './login/authState';
-
-import './app.css';
 
 export default function App() {
     const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
@@ -47,12 +47,13 @@ export default function App() {
                 </header>
 
                 <Routes>
-                    <Route path='/' element={<Login username={username}
-                        authState={authState} />}
-                        onAuthChange={(_username, _authState) => {
-                            setUsername(_username);
-                            setAuthState(_authState);
-                        }}
+                    <Route path='/' element={<Login
+                        username={username}
+                        authState={authState}
+                        onAuthChange={(new_username, new_authState) => {
+                            setUsername(new_username);
+                            setAuthState(new_authState);
+                        }} />}
                         exact />
                     <Route path='/room-selection' element={<RoomSelection />} />
                     <Route path='/chatroom' element={<Chatroom />} />

@@ -4,7 +4,8 @@ export class AuthState {
     static Unauthenticated = new AuthState('unauthenticated');
 
     static async check_authentication() {
-        return (await fetch('/api/check-login-cookie')).ok;
+        const response = await fetch('/api/check-login-cookie');
+        return response.ok;
     }
   
     constructor(name) {
