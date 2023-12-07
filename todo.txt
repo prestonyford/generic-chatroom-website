@@ -1,0 +1,2 @@
+- Jukebox feature (right window)
+- Drawing feature

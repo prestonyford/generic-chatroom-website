@@ -2,7 +2,7 @@ p {
     margin-bottom: 0;
 }
 
-body {
+.body {
     display: flex;
     flex-direction: column;
     height: 100vh;

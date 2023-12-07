@@ -1,20 +1,17 @@
 {
-  "name": "startup",
-  "version": "1.0.0",
-  "description": "> [!NOTE]\r > This repository is for a school assignment\r # Startup Specification\r ## Elevator Pitch\r Have you ever wanted to set up a quick group chat with friends (or strangers) without needing to gather everyone's profiles, send an invite code, etc.? This website will provide several chatrooms for users to quickly join and start conversing. Simply create an account, pick a name, and join the right global chatroom and you're ready.",
-  "main": "chatroom.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {
+    "vite": "^5.0.6"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "cookie-parser": "^1.4.6",
-    "express": "^4.18.2",
-    "mongodb": "^6.2.0",
-    "uuid": "^9.0.1",
-    "ws": "^8.14.2"
+    "bootstrap": "^5.3.2",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.9.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1"
   }
 }

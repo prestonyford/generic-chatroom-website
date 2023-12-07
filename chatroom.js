@@ -3,8 +3,6 @@ const username = localStorage.getItem("username");
 const LeaveRoomEvent = 'userLeft';
 const JoinRoomEvent = 'userJoined';
 
-const self = this; // I keep making this mistake
-
 window.onload = async () => {
     const chatroom = new Chatroom('A');
     await chatroom.loadHistory();
@@ -64,12 +62,16 @@ function subscribe_left_window_resize() {
 }
 
 class Chatroom {
+    self;
     room;
-    socket;
+    chat_socket;
 
     constructor(room) {
+        this.self = this; // I keep making this mistake
+
         this.room = room;
-        this.socket = this.configureWebSocket();
+        this.configureUserCountWebSocket();
+        this.chat_socket = this.configureWebSocket();
     }
 
     async loadHistory() {
@@ -256,7 +258,7 @@ class Chatroom {
 
     configureWebSocket() {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        const socket = new WebSocket(`${protocol}://${window.location.host}/ws?room=${this.room}&user=${username}`);
+        const socket = new WebSocket(`${protocol}://${window.location.host}/chat?room=${this.room}&user=${username}`);
         socket.onopen = (event) => {
             this.send_message({
                 type: 'system',
@@ -265,7 +267,7 @@ class Chatroom {
             });
         };
         socket.onclose = (event) => {
-            alert("You have disconnected");
+            setTimeout(() => { alert("You have disconnected") }, 5000);
         };
         socket.onmessage = async (event) => {
             const message = JSON.parse(await event.data.text());
@@ -277,6 +279,16 @@ class Chatroom {
 
     broadcastEvent(message) {
         const event = message;
-        this.socket.send(JSON.stringify(event));
+        this.chat_socket.send(JSON.stringify(event));
+    }
+
+    configureUserCountWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        const socket = new WebSocket(`${protocol}://${window.location.host}/count`);
+    
+        socket.onmessage = async (event) => {
+            const message = JSON.parse(await event.data.text());
+            document.getElementById('current-user-count').innerText = message.room_A_count;
+        };
     }
 }
