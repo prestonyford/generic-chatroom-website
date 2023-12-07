@@ -5,14 +5,24 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { RoomSelection } from './room_selection/room_selection';
 import { Chatroom } from './chatroom/chatroom';
+import { AuthState } from './login/authState';
 
 import './app.css';
 
 export default function App() {
+    const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
+    const [authState, setAuthState] = React.useState(AuthState.Unknown);
+
+    React.useEffect(() => {
+        AuthState.check_authentication().then((authenticated => {
+            setAuthState(authenticated? AuthState.Authenticated : AuthState.Unauthenticated);
+        }));
+    });
+
     return (
         <BrowserRouter>
-            <div className='body bg-dark text-light'>
-                <header className="sticky-top border-bottom">
+            <div className='body text-light'>
+                <header className="border-bottom">
                     <div className="navbar navbar-expand-sm navbar-light green-header" style={{ padding: '0.8em' }}>
                         <div className="container-fluid">
                             <a className="navbar-brand">
@@ -37,7 +47,13 @@ export default function App() {
                 </header>
 
                 <Routes>
-                    <Route path='/' element={<Login />} exact />
+                    <Route path='/' element={<Login username={username}
+                        authState={authState} />}
+                        onAuthChange={(_username, _authState) => {
+                            setUsername(_username);
+                            setAuthState(_authState);
+                        }}
+                        exact />
                     <Route path='/room-selection' element={<RoomSelection />} />
                     <Route path='/chatroom' element={<Chatroom />} />
                     <Route path='*' element={<NotFound />} />
@@ -55,6 +71,8 @@ export default function App() {
         </BrowserRouter>
     );
 }
+
+
 
 function NotFound() {
     return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;

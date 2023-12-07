@@ -1,0 +1,23 @@
+#login-window {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+#logout-window {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    width: 40vh;
+    padding: 30px 40px;
+    gap: 10px;
+}
+
+#username {
+    font-style: italic;
+}
+
+label {
+    width: 100%;
+    text-align: start;
+}
