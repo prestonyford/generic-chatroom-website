@@ -14,7 +14,10 @@ export function RoomOption({ name, count, disabled = false }) {
                     <span> / 20</span>
                 </p>
             </div>
-            <a className={`btn btn-outline-primary${disabled?' disabled':''}`} onClick={() => navigate('/chatroom', {room: name})} >{disabled?'Disabled':'Join'}</a>
+            <a className={`btn btn-outline-primary${disabled?' disabled':''}`} onClick={() => {
+                console.log(`navigating to /chatroom with state: ${name}`);
+                navigate('/chatroom', {state: {room: name}});
+            }} >{disabled?'Disabled':'Join'}</a>
         </div>
     )
 }

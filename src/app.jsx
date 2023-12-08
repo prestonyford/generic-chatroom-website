@@ -63,7 +63,7 @@ export default function App() {
                 <footer className="green-footer">
                     <nav className="border-top">
                         <div className="container-fluid">
-                            <span className="text-muted">Preston Ford •</span>
+                            <span className="text-muted">Preston Ford • </span>
                             <a className="text-muted" href="https://github.com/prestonyford/startup">GitHub repo</a>
                         </div>
                     </nav>

@@ -76,6 +76,7 @@
 
 .message {
     /* position: relative; */
+    color: #070D0D;
     max-width: 60%;
     padding: 6px 10px;
     margin: 6px;
