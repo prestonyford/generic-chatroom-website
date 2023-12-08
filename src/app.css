@@ -26,6 +26,13 @@ main {
     flex: 1;
 }
 
+.not-found {
+    color: black;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+
 .form-title {
     text-align: center;
     padding-bottom: 2px;

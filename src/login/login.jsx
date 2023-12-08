@@ -28,7 +28,7 @@ export function Login({ username, authState, onAuthChange }) {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         });
-        setLoading(false);
+        setTimeout(() => { setLoading(false); }, 100);
 
         if (response.ok) {
             attempt_login();
@@ -47,7 +47,7 @@ export function Login({ username, authState, onAuthChange }) {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         });
-        setLoading(false);
+        setTimeout(() => { setLoading(false); }, 100);
 
         if (response.ok) {
             localStorage.setItem("username", usernameInput);
@@ -66,7 +66,7 @@ export function Login({ username, authState, onAuthChange }) {
             localStorage.removeItem('username');
             onAuthChange(usernameInput, AuthState.Unauthenticated)
         }).finally(() => {
-            setLoading(false);
+            setTimeout(() => { setLoading(false); }, 100);
         })
     }
 
@@ -78,8 +78,7 @@ export function Login({ username, authState, onAuthChange }) {
 
     return (
         <main className='container-fluid text-center'>
-            {loading && <LoadingBlocks />}
-            {(authState === AuthState.Unknown) && <p className="loading text-secondary">Loading</p>}
+            {(loading || authState === AuthState.Unknown) && <LoadingBlocks />}
             {authState === AuthState.Unauthenticated && (
                 <div id="login-window">
                     <nav>

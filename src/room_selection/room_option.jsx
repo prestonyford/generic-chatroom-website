@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function RoomOption({ name, count, disabled }) {
+export function RoomOption({ name, count, disabled = false }) {
+    const navigate = useNavigate();
+
     return (
         <div className="card room-selection-option">
             <span className="room-selection-option-title">Chat Room {name}</span>
@@ -12,7 +14,7 @@ export function RoomOption({ name, count, disabled }) {
                     <span> / 20</span>
                 </p>
             </div>
-            <a className={`btn btn-outline-primary${disabled? ' disabled' : ''}`} href="chatroom.html">{disabled? 'Disabled' : 'Join'}</a>
+            <a className={`btn btn-outline-primary${disabled?' disabled':''}`} onClick={() => navigate('/chatroom', {room: name})} >{disabled?'Disabled':'Join'}</a>
         </div>
     )
 }
