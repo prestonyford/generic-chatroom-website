@@ -9,6 +9,9 @@ const db = client.db('startup');
 
 const userCollection = db.collection('user');
 const room_A_collection = db.collection('room_A');
+const room_B_collection = db.collection('room_B');
+const room_C_collection = db.collection('room_C');
+const room_D_collection = db.collection('room_D');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -46,6 +49,18 @@ async function addMessage(room, message) {
         const result = await room_A_collection.insertOne(message);
         return result;
     }
+    else if (room === 'B') {
+        const result = await room_B_collection.insertOne(message);
+        return result;
+    }
+    else if (room === 'C') {
+        const result = await room_C_collection.insertOne(message);
+        return result;
+    }
+    else if (room === 'D') {
+        const result = await room_D_collection.insertOne(message);
+        return result;
+    }
 }
 
 async function getMessageHistory(room, num_messages) {
@@ -56,6 +71,21 @@ async function getMessageHistory(room, num_messages) {
     };
     if (room === 'A') {
         const cursor = room_A_collection.find(query, options);
+        const res = await cursor.toArray();
+        return res;
+    }
+    else if (room === 'B') {
+        const cursor = room_B_collection.find(query, options);
+        const res = await cursor.toArray();
+        return res;
+    }
+    else if (room === 'C') {
+        const cursor = room_C_collection.find(query, options);
+        const res = await cursor.toArray();
+        return res;
+    }
+    else if (room === 'D') {
+        const cursor = room_D_collection.find(query, options);
         const res = await cursor.toArray();
         return res;
     }

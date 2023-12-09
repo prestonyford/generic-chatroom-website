@@ -68,6 +68,7 @@ export function MessagesContainer({ room }) {
                 navigate('/');
             }
             const data = await response.json();
+            console.log(data);
             // setMessages(data.history.toReversed())
 			let new_messages = [];
 			for (const message of data.history) {
@@ -86,16 +87,17 @@ export function MessagesContainer({ room }) {
     }
 
     function push_message_element(message_element) {
-		// let scroll = false;
-        // if (messagesContainerRef.current.scrollTop >= -10) {
-        //     scroll = true;
-        // }
+		let scroll = false;
+        if (messagesContainerRef.current.scrollTop >= -10) {
+            scroll = true;
+        }
 		// setMessages([message_element, ...(messages)]);
         setMessages((prevMessages) => [message_element, ...prevMessages]);
 		// Chrome bad
-        // if (scroll === true) {
-        //     messagesContainerRef.current.scrollTop = 0.5;  
-        // }
+        if (scroll === true) {
+            console.log('scrolling')
+            messagesContainerRef.current.scrollTop = 0.5;  
+        }
 	}
 
 	function create_message_element(message) {

@@ -48,9 +48,9 @@ export function RoomSelection() {
 				<h3 className="form-title">Select a room to join</h3>
 				<div id="room-selection-option-list">
 					<RoomOption name={'A'} count={userCountA} />
-					<RoomOption name={'B'} count={userCountB} disabled={true} />
-					<RoomOption name={'C'} count={userCountC} disabled={true} />
-					<RoomOption name={'D'} count={userCountD} disabled={true} />
+					<RoomOption name={'B'} count={userCountB} disabled={false} />
+					<RoomOption name={'C'} count={userCountC} disabled={false} />
+					<RoomOption name={'D'} count={userCountD} disabled={false} />
 				</div>
 			</div>
 		</main>
