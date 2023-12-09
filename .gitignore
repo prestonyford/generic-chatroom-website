@@ -1,5 +1,6 @@
 node_modules/
 api_keys/
+dist/
 conceptImage.jpg
 config.js
 apiConfig.js

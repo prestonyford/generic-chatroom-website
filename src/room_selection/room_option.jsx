@@ -9,7 +9,7 @@ export function RoomOption({ name, count, disabled = false }) {
             <span className="room-selection-option-title">Chat Room {name}</span>
             <div className="room-selection-option-user-count">
                 <p>
-                    <span><img src="icons/icons8-user-30.png" height="20px" /></span>
+                    <span><img src="/icons8-user-30.png" height="20px" /></span>
                     <span className="active-users-room-a">{count}</span>
                     <span> / 20</span>
                 </p>

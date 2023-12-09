@@ -148,7 +148,7 @@ export function MessagesContainer({ room }) {
         <>
             {loading && <LoadingBlocks />}
             <div id='room-title'>
-				Room {room} (<img src="icons/icons8-user-30.png" height="16px" />{userCount} / 20)
+				Room {room} (<img src="/icons8-user-30.png" height="16px" />{userCount} / 20)
 			</div>
             <div id="messages-container" ref={messagesContainerRef}>{messages}</div>
             <div className="user-message-input">
@@ -158,7 +158,7 @@ export function MessagesContainer({ room }) {
                 <input id="message-text-box" className="form-control" type="text" value={messageText} onChange={(e) => setMessageText(e.target.value)} placeholder="Enter a message..." onKeyDown={(e) => handle_enter(e, send_and_clear)} />
                 <button id="send-message-button" className="btn btn-primary" type="submit" onClick={send_and_clear}>
                     <span>Send</span>
-                    <img src="icons/icons8-send-30.png" width="20px" />
+                    <img src="/icons8-send-30.png" width="20px" />
                 </button>
             </div>
         </>
