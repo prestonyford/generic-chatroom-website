@@ -76,3 +76,12 @@ Have you ever wanted to set up a quick group chat with friends (or strangers) wi
   - Backend will send a message to all connected sockets when one disconnects, saying "{USER} has left the room"
   - Message history endpoint is no longer used, updating the database is now handled by the chat WebSocket server
 - A separate user count WebSocket is used to display live counts of currently online users; this number is displayed in the room selection page and the top-right of a chatroom page
+
+## React Deliverable
+- Basically rewrote the entire website frontend
+- All 4 chatrooms are now open instead of only chatroom A
+- It:
+  - Was bundled with vite
+  - Has multiple functional react components
+  - Uses a router
+  - Uses hooks
