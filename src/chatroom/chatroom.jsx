@@ -16,27 +16,35 @@ import './chatroom.css';
 export function Chatroom({ room }) {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const username = localStorage.getItem('username');
 
 	if (location.state && location.state.room) {
 		room = location.state.room;
 	}
 
-	const username = localStorage.getItem('username');
-	
+	const [loading, setLoading] = React.useState(false);
 	const [messages, setMessages] = React.useState([]);
+
 	const [messageText, setMessageText] = React.useState('');
 	const [gifSearchText, setGifSearchText] = React.useState('');
-	const [chatroomNotifier, setChatroomNotifer] = React.useState(null);
+
+	const chatroomNotifierRef = React.useRef(null);
+	const messagesContainerRef = React.useRef(null);
 
 	React.useEffect(() => {
-		(async () => {
-			await loadHistory();
-			setChatroomNotifer(new ChatroomNotifier(
-				room,
-				[(m) => push_message_element(create_message_element(m))], // When a new chat message is received
-				[] // When a new user count message is received
-			));
-		})();
+		setLoading(true);
+		loadHistory();
+		chatroomNotifierRef.current = new ChatroomNotifier(
+			room,
+			[(message) => push_message_element(create_message_element(message))], // When a new chat message is received
+			[] // When a new user count message is received
+		);
+
+		return () => {
+			// close sockets
+			chatroomNotifierRef.current.chat_socket.close();
+			chatroomNotifierRef.current.count_socket.close();
+		}
 	}, []);
 
 	async function loadHistory() {
@@ -51,25 +59,37 @@ export function Chatroom({ room }) {
 			for (const message of data.history) {
 				new_messages.push(create_message_element(message));
 			}
+			new_messages.push(create_message_element({
+				type: 'system',
+				author: username,
+				content: `${username} has joined the room`
+			}));
 			setMessages(new_messages);
-			console.log(messages);
+			setTimeout(() => console.log(messages), 2000);
         }
         catch(error) {
             console.error(error);
         }
+		finally {
+			setLoading(false);
+		}
     }
 
 	function push_message_element(message_element) {
-		
-		setMessages([...messages, message_element]);
+		let scroll = false;
+        if (messagesContainerRef.current.scrollTop >= -10) {
+            scroll = true;
+        }
+		setMessages([message_element, ...messages]);
+		// Chrome bad
+        if (scroll === true) {
+            console.log("scrolling");
+            messagesContainerRef.current.scrollTop = 0.5;  
+        }
 	}
 
 	function create_message_element(message) {
-        const messages_container = document.getElementById('messages-container');
-        let scroll = false;
-        if (messages_container.scrollTop >= -10) {
-            scroll = true;
-        }
+		console.log(`new message: ${JSON.stringify(message)}`);
 
         const { type: type, author: author, content: content } = message;
 		const id = uuidv4();
@@ -88,12 +108,6 @@ export function Chatroom({ room }) {
                 return (<MessageOther author={author} content={content} key={id}/>);
             }
         }
-    
-        // Chrome bad
-        if (scroll === true) {
-            console.log("scrolling");
-            messages_container.scrollTop = 0.5;  
-        }
     }
 
 	function handle_enter(e, target) {
@@ -103,12 +117,22 @@ export function Chatroom({ room }) {
     }
 
 	function send_and_clear() {
-		chatroomNotifier.sendChatMessage({type: 'message', author: username, content: messageText});
+		if (messageText === '') {
+			return;
+		}
+		const message = {type: 'message', author: username, content: messageText};
+		push_message_element(create_message_element(message));
+		chatroomNotifierRef.current.sendChatMessage(message);
 		setMessageText('');
+	}
+
+	function leave() {
+		navigate('/room-selection');
 	}
 
 	return (
 		<main id="chatroom-main">
+			{loading && <LoadingBlocks />}
 			<div id="main-content">
 				<div id="chatroom-left-window" className="bg-light">
 					<div className="gif-search-div">
@@ -120,14 +144,14 @@ export function Chatroom({ room }) {
 					<div id="gif-search-results">
 						<p className="text-secondary try-search-for-gif" >Try searching for a GIF!</p>
 					</div>
-					<a className="change-room-button btn btn-outline-danger" href="rooms.html" >
+					<a className="change-room-button btn btn-outline-danger" onClick={leave} >
 						<span>Leave Room</span>
 					</a>
 				</div>
 				<div id="chatroom-right-window">
-					<div id="messages-container">{messages}</div>
+					<div id="messages-container" ref={messagesContainerRef} >{messages}</div>
 					<div className="user-message-input">
-						<a className="change-room-button change-room-button-small btn btn-outline-danger" href="rooms.html">
+						<a className="change-room-button change-room-button-small btn btn-outline-danger" onClick={leave}>
 							<span>Leave</span>
 						</a>
 						<input id="message-text-box" className="form-control" type="text" value={messageText} onChange={(e) => setMessageText(e.target.value)} placeholder="Enter a message..." onKeyDown={(e) => handle_enter(e, send_and_clear)} />

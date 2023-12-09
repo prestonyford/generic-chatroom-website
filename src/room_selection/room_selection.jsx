@@ -7,7 +7,7 @@ import { LoadingBlocks } from '../loading/loading';
 
 import './room_selection.css';
 
-export function RoomSelection({ authState }) {
+export function RoomSelection() {
 	const navigate = useNavigate();
 
 	const [userCountA, setUserCountA] = React.useState('?');
@@ -17,13 +17,15 @@ export function RoomSelection({ authState }) {
 	const [loading, setLoading] = React.useState(false);
 
 	React.useEffect(() => {
-		if (authState !== AuthState.Authenticated) {
-			(async () => {
-				navigate('/');
-			})();
-		}
-
 		setLoading(true);
+
+		(async () => {
+			const response = await fetch('/api/check-login-cookie');
+			if (!response.ok) {
+				navigate('/');
+			}
+		})();
+		
 		const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
 		let port = window.location.port;
 		const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/count`);
