@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthState } from '../login/authState';
 import { LoadingBlocks } from '../loading/loading';
 import { MessagesContainer } from './messages_container';
+import { GifContainer } from './gif_container';
 
 import './chatroom.css';
 
@@ -18,17 +19,14 @@ export function Chatroom() {
 
 	const [loading, setLoading] = React.useState(false);
 
-	const [gifSearchText, setGifSearchText] = React.useState('');
+	// const countNotifierRef = React.useRef(null);
 
-	React.useEffect(() => {
-
-	}, []);
-
-	function handle_enter(e, target) {
-        if (e.key === 'Enter') {
-            target();
-        }
-    }
+	// React.useEffect(() => {
+	// 	countNotifierRef.current = new CountNotifier();
+	// 	window.addEventListener('count_message_received', (e) => {
+	// 		console.log(e.detail.message[room]);
+	// 	})
+	// }, []);
 
 	function leave() {
 		navigate('/room-selection');
@@ -39,18 +37,7 @@ export function Chatroom() {
 			{loading && <LoadingBlocks />}
 			<div id="main-content">
 				<div id="chatroom-left-window" className="bg-light">
-					<div className="gif-search-div">
-						<input type="text" className="form-control" id="gif-search-text-box" onChange={(e) => setGifSearchText(e.target.value)} placeholder="Search for a GIF..." />
-						<button type="submit" className="btn btn-primary" id="gif-search-button">
-							<span>Search</span>
-						</button>
-					</div>
-					<div id="gif-search-results">
-						<p className="text-secondary try-search-for-gif" >Try searching for a GIF!</p>
-					</div>
-					<a className="change-room-button btn btn-outline-danger" onClick={leave} >
-						<span>Leave Room</span>
-					</a>
+					<GifContainer />
 				</div>
 				<div id="chatroom-right-window">
 					<MessagesContainer room={room} />

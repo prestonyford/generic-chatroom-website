@@ -3,11 +3,12 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { Login } from './login/login';
 import { RoomSelection } from './room_selection/room_selection';
 import { Chatroom } from './chatroom/chatroom';
 import { AuthState } from './login/authState';
+// import { CountNotifier } from './count_notifier';
 
 export default function App() {
     const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
@@ -43,6 +44,9 @@ export default function App() {
                                 </ul>
                             </div>
                         </div>
+                        {/* <p className="current-user-count-container collapse navbar-collapse">
+                            <span>Room participants: </span><span id="current-user-count">0</span>
+                        </p> */}
                     </div>
                 </header>
 
