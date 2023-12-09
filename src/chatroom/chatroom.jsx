@@ -17,8 +17,6 @@ export function Chatroom() {
 	const room = location.state.room;	
 	const username = localStorage.getItem('username');
 
-	const [loading, setLoading] = React.useState(false);
-
 	// const countNotifierRef = React.useRef(null);
 
 	// React.useEffect(() => {
@@ -34,7 +32,6 @@ export function Chatroom() {
 
 	return (
 		<main id="chatroom-main">
-			{loading && <LoadingBlocks />}
 			<div id="main-content">
 				<div id="chatroom-left-window" className="bg-light">
 					<GifContainer />

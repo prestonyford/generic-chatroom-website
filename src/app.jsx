@@ -8,7 +8,6 @@ import { Login } from './login/login';
 import { RoomSelection } from './room_selection/room_selection';
 import { Chatroom } from './chatroom/chatroom';
 import { AuthState } from './login/authState';
-// import { CountNotifier } from './count_notifier';
 
 export default function App() {
     const [username, setUsername] = React.useState(localStorage.getItem('username') || '');

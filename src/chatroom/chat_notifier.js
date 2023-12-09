@@ -2,7 +2,6 @@ export class ChatroomNotifier {
     room;
     username;
     chat_socket;
-    count_socket;
 
     constructor(room) {
         this.room = room;
@@ -28,7 +27,7 @@ export class ChatroomNotifier {
 			setTimeout(() => {
                 // Only alert if the user is still inside of the chatroom after the timeout
                 if (!JSON.parse(localStorage.getItem('chat_socket_open')) && window.location.pathname === '/chatroom'){
-                    alert("You have disconnected");
+                    // alert("You have disconnected");
                 }
             }, 5000);
 		};
@@ -38,7 +37,7 @@ export class ChatroomNotifier {
                 detail: {
                     message
                 }
-            }))
+            }));
 		};
 		return socket;
 	}
