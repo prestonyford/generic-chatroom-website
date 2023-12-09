@@ -3,16 +3,12 @@ export class ChatroomNotifier {
     username;
     chat_socket;
     count_socket;
-    chat_socket_listeners;
-    count_socket_listeners;
 
-    constructor(room, chat_socket_listeners, count_socket_listeners) {
+    constructor(room) {
         this.room = room;
         this.username = localStorage.getItem('username');
         this.chat_socket = this.configureChatWebSocket();
         this.count_socket = this.configureUserCountWebSocket();
-        this.chat_socket_listeners = chat_socket_listeners;
-        this.count_socket_listeners = count_socket_listeners;
     }
 
     configureChatWebSocket() {
@@ -38,9 +34,11 @@ export class ChatroomNotifier {
 		};
 		socket.onmessage = async (event) => {
 			const message = JSON.parse(await event.data.text());
-            for (const listener of this.chat_socket_listeners) {
-                listener(message);
-            }
+            window.dispatchEvent(new CustomEvent('chat_message_received', {
+                detail: {
+                    message
+                }
+            }))
 		};
 		return socket;
 	}
@@ -60,9 +58,11 @@ export class ChatroomNotifier {
         socket.onmessage = async (event) => {
             const message = JSON.parse(await event.data.text());
             // document.getElementById('current-user-count').innerText = message.room_A_count;
-            for (const listener of this.count_socket_listeners) {
-                listener(message);
-            }
+            window.dispatchEvent(new CustomEvent('count_message_received', {
+                detail: {
+                    message
+                }
+            }))
         };
         return socket;
     }

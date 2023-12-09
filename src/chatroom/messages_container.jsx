@@ -3,30 +3,34 @@ import { v4 as uuidv4 } from 'uuid';
 import { MessageSystem } from './message_elements/message_system';
 import { MessageSelf } from './message_elements/message_self';
 import { MessageOther } from './message_elements/message_other';
-import { ChatroomNotifier } from './chatroom_notifier';
+import { ChatroomNotifier } from './chat_notifier';
 
 export function MessagesContainer({ room }) {
     const username = localStorage.getItem('username');
     const [messages, setMessages] = React.useState([]);
     const [messageText, setMessageText] = React.useState('');
 
-    const chatroomNotifierRef = React.useRef(null);
+    const chatNotifierRef = React.useRef(null);
 	const messagesContainerRef = React.useRef(null);
 
     React.useEffect(() => {
-		loadHistory();
-		chatroomNotifierRef.current = new ChatroomNotifier(
-			room,
-			[(message) => push_message_element(create_message_element(message))], // When a new chat message is received
-			[] // When a new user count message is received
-		);
+        loadHistory().then(() => {
+            chatNotifierRef.current = new ChatroomNotifier(room);
+            window.addEventListener('chat_message_received', (e) => {
+                push_message_element(create_message_element(e.detail.message));
+            })
+        })
 
 		return () => {
 			// close sockets
-			chatroomNotifierRef.current.chat_socket.close();
-			chatroomNotifierRef.current.count_socket.close();
+			chatNotifierRef.current.chat_socket.close();
+			chatNotifierRef.current.count_socket.close();
 		}
 	}, []);
+
+    React.useEffect(() => {
+        // console.log(messages);
+    }, [messages]);
 
     async function loadHistory() {
         try {
@@ -57,7 +61,8 @@ export function MessagesContainer({ room }) {
         // if (messagesContainerRef.current.scrollTop >= -10) {
         //     scroll = true;
         // }
-		setMessages([message_element, ...messages]);
+		// setMessages([message_element, ...(messages)]);
+        setMessages((prevMessages) => [message_element, ...prevMessages]);
 		// Chrome bad
         // if (scroll === true) {
         //     messagesContainerRef.current.scrollTop = 0.5;  
@@ -93,7 +98,7 @@ export function MessagesContainer({ room }) {
             content: messageText
         };
         push_message_element(create_message_element(message));
-        chatroomNotifierRef.current.sendChatMessage(message);
+        chatNotifierRef.current.sendChatMessage(message);
 		setMessageText('');
 	}
 
