@@ -1,4 +1,9 @@
-/* CHATROOM */
+:root {
+    --secondary-bg-color: #F8F9FA;
+    --secondary-bg-gradient-color: #DDDDDD;
+  }  
+
+/* GENERAL */
 
 #chatroom-main {
     flex-direction: column;
@@ -6,28 +11,22 @@
     overflow-y: hidden;
 }
 
-#room-title {
-    height: 24px;
-    background: linear-gradient(to left, #F8F9FA, #DDDDDD, #F8F9FA);
-    text-align: center;
-    font-weight: 600;
-    color: #171717;
+#main-content {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 500px auto 12px;
+    grid-template-rows: auto;
 }
 
-#messages-container {
-    flex: 1;
-    display: flex;
-    flex-direction:
-    column-reverse;
-    overflow-y: auto;
-    padding: 0 10px;
-    border: #A9A9A9 solid 1px;
-}
+/* END GENERAL */
+/* GIF */
 
-.user-message-input {
-    background: linear-gradient(to left, #F8F9FA, #DDDDDD, #F8F9FA);
-    display: flex;
+#chatroom-left-window {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    background: linear-gradient(to right, var(--secondary-bg-gradient-color) 0%, var(--secondary-bg-color) 12px);
 }
 
 .try-search-for-gif {
@@ -35,27 +34,6 @@
     align-self: center;
     text-align: center;
     user-select: none;
-}
-
-#chatroom-right-window {
-    max-height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-#main-content {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 500px 2fr;
-    grid-template-rows: auto;
-}
-
-#chatroom-left-window {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: hidden;
 }
 
 .gif-search-div {
@@ -89,6 +67,40 @@
     width: fit-content;
 }
 
+/* END GIF */
+/* MIDDLE (CHAT) WINDOW */
+
+#chatroom-middle-window {
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#room-title {
+    height: 24px;
+    background: linear-gradient(to left, var(--secondary-bg-color), var(--secondary-bg-gradient-color), var(--secondary-bg-color));
+    text-align: center;
+    font-weight: 600;
+    color: #171717;
+}
+
+#messages-container {
+    flex: 1;
+    display: flex;
+    flex-direction:
+    column-reverse;
+    overflow-y: auto;
+    padding: 0 10px;
+    border: #A9A9A9 solid 1px;
+}
+
+.user-message-input {
+    background: linear-gradient(to left, var(--secondary-bg-color), var(--secondary-bg-gradient-color), var(--secondary-bg-color));
+    display: flex;
+    padding: 10px;
+}
+
 .message {
     /* position: relative; */
     color: #070D0D;
@@ -98,10 +110,22 @@
     border-radius: 14px;
 }
 
+/* END MIDDLE WINDOW */
+/* RIGHT WINDOW */
+
+#chatroom-right-window {
+    height: 100%;
+    background: linear-gradient(to right, var(--secondary-bg-color), var(--secondary-bg-gradient-color));
+}
+
+/* END RIGHT WINDOW */
+/* MESSAGES */
+
 .message-self {
     align-self: end;
     background-color: #addb4f;
     border-bottom-right-radius: 0;
+    position: relative;
 }
 
 .message-other {
@@ -112,10 +136,15 @@
     border-bottom-left-radius: 0;
 }
 
+.message-image {
+    padding: 6px;
+}
+
 .message-image > img {
-    max-width: 25em;
-    max-height: 25em;
-    border-radius: 6px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .message-author {
@@ -131,6 +160,9 @@
     color:grey;
     padding: 6px;
 }
+
+/* END MESSAGES */
+/* MISC */
 
 .change-room-button {
     justify-self: end;
@@ -155,6 +187,8 @@
     align-self: flex-end;
     display: flex;
 }
+
+/* END MISC */
 
 @media (max-width: 1000px) {
     #main-content {

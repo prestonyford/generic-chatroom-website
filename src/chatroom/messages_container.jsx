@@ -74,7 +74,7 @@ export function MessagesContainer({ room }) {
 			for (const message of data.history) {
 				new_messages.push(create_message_element(message));
 			}
-			new_messages.push(create_message_element({
+			push_message_element(create_message_element({
 				type: 'system',
 				author: username,
 				content: `${username} has joined the room`

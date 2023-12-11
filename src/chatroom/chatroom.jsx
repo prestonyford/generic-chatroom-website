@@ -36,8 +36,11 @@ export function Chatroom() {
 				<div id="chatroom-left-window" className="bg-light">
 					<GifContainer />
 				</div>
-				<div id="chatroom-right-window">
+				<div id="chatroom-middle-window">
 					<MessagesContainer room={room} />
+				</div>
+				<div id="chatroom-right-window">
+
 				</div>
 			</div>
 		</main>
