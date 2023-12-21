@@ -248,3 +248,26 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
   - It is a websocket protocol
   - https:// the stuff before :// is the protocol
   - ws:// is another protocol for websockets
+
+# 12/20/2023
+- Ports
+  - HTTP: 80
+  - HTTPS: 443
+  - SSH: 22
+- What do HTTP status codes in the 300, 400, 500 range indicate?
+  - Informational responses (100 – 199)
+  - Successful responses (200 – 299)
+  - Redirection messages (300 – 399)
+  - Client error responses (400 – 499)
+  - Server error responses (500 – 599)
+- What does the HTTP header content-type allows you to do?
+  - The Content-Type representation header is used to indicate the original media type of the resource (prior to any content encoding applied for sending). In responses, a Content-Type header provides the client with the actual content type of the returned content. This header's value may be ignored, for example when browsers perform MIME sniffing; set the X-Content-Type-Options header value to nosniff to prevent this behavior.
+- What do the following attributes of a cookie do?
+  - Domain: Specifies domain which the cookie is valid. It controls which domains and subdomains can receive and send the cookie. The browser will include the cookie in requests to this domain and its subdomains. If not specified, it is only valid for the domain that set it.
+  - Path: Subset of paths on which the cookie is valid.
+  - SameSite:
+    - SameSite=None: The cookie is sent with both same-site and cross-site requests. This is typically used for cookies that are part of third-party integrations.
+    - SameSite=Lax: The cookie is sent with same-site requests and with cross-site top-level navigations (like clicking a link). This is the default value if SameSite is not specified.
+    - SameSite=Strict: The cookie is only sent with same-site requests.
+  - HTTPOnly: Prevents javascript on the frontend from accessing/manipulating cookies (can't use document.cookie).
+
