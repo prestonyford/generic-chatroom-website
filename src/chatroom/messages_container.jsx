@@ -24,7 +24,7 @@ export function MessagesContainer({ room }) {
 
     React.useEffect(() => {
         setLoading(true);
-        loadHistory()
+        loadHistory();
 
         chatNotifierRef.current = new ChatroomNotifier(room);
         window.addEventListener('chat_message_received', (e) => {
@@ -68,7 +68,7 @@ export function MessagesContainer({ room }) {
                 navigate('/');
             }
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             // setMessages(data.history.toReversed())
 			let new_messages = [];
 			for (const message of data.history) {
@@ -95,7 +95,7 @@ export function MessagesContainer({ room }) {
         setMessages((prevMessages) => [message_element, ...prevMessages]);
 		// Chrome bad
         if (scroll === true) {
-            console.log('scrolling')
+            // console.log('scrolling')
             messagesContainerRef.current.scrollTop = 0.5;  
         }
 	}

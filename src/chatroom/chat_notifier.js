@@ -7,7 +7,6 @@ export class ChatroomNotifier {
         this.room = room;
         this.username = localStorage.getItem('username');
         this.chat_socket = this.configureChatWebSocket();
-        
     }
 
     configureChatWebSocket() {

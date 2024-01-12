@@ -117,7 +117,6 @@ peerProxy(httpService);
 
 async function getMessageHistory(room) {
     const history = await DB.getMessageHistory(room, 20);
-    console.log({ history: history });
     return { history: history };
 }
 

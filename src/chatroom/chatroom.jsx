@@ -10,7 +10,7 @@ import './chatroom.css';
 // TODO: Make key the a unique id given by the server
 
 export function Chatroom() {
-	console.log("rendering");
+	// console.log("rendering");
 	const navigate = useNavigate();
 	const location = useLocation();
 
